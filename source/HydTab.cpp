@@ -80,7 +80,6 @@ void HydTabController::loadData(const HydData& HydInfo)
 	TScore->set_mFrame(HydInfo.TopP);
 	MScore->set_mFrame(HydInfo.MidP);
 	LScore->set_mFrame(HydInfo.LowP);
-	
 }
 
 void HydTabController::saveData(HydData* HydInfo)
@@ -91,9 +90,7 @@ void HydTabController::saveData(HydData* HydInfo)
 	HydInfo->TopP = TScore->get_mFrame();
 	HydInfo->MidP = MScore->get_mFrame();
 	HydInfo->LowP = LScore->get_mFrame();
-	
 }
-	
 
 void HydTabController::set_HasHybrid(CheckBox* cb)
 {
@@ -125,21 +122,21 @@ void HydTabController::set_LScore(NumberSprite* ns)
 	LScore = ns;
 }
 
-Tab* InitHydTab(Controller* superController)
+Tab* initHydTab(Controller* superController)
 {
 	HydTabController HTController(superController);
 	
-	Tab HydTab(kBottomScreen, 0, 0, HybridTab_Sprite, &BGHybrid, &HTController);
+	Tab* HydTab = new Tab(kBottomScreen, 0, 0, HybridTab_Sprite, &BGHybrid, &HTController);
 	
 		// checkboxes (Hybrid Type)
 		CheckBox HasHybrid(kBottomScreen, 88, 40, HasHybrid_Sprite);
 		
-			HydTab.add(&HasHybrid);
+			HydTab->add(&HasHybrid);
 				HTController.set_HasHybrid(&HasHybrid);
 		
 		CheckBox UsesKINECT(kBottomScreen, 224, 40, UsesKINECT_Sprite);
 		
-			HydTab.add(&UsesKINECT);
+			HydTab->add(&UsesKINECT);
 				HTController.set_UsesKINECT(&UsesKINECT);
 		
 		// radiobuttons (Score Type)
@@ -153,7 +150,7 @@ Tab* InitHydTab(Controller* superController)
 		ScoreType.add(&HybridAssist);
 		ScoreType.add(&Other);
 		
-			HydTab.add(&ScoreType);
+			HydTab->add(&ScoreType);
 				HTController.set_ScoreType(&ScoreType);
 		
 		// number_sprites (Score Locations)
@@ -161,14 +158,14 @@ Tab* InitHydTab(Controller* superController)
 		NumberSprite MidScore(kBottomScreen, 140, 128, Mid_Sprite);
 		NumberSprite LowScore(kBottomScreen, 140, 150, Low_Sprite);
 		
-			HydTab.add(&TopScore);
+			HydTab->add(&TopScore);
 				HTController.set_TScore(&TopScore);
 			
-			HydTab.add(&MidScore);
+			HydTab->add(&MidScore);
 				HTController.set_MScore(&MidScore);
 			
-			HydTab.add(&LowScore);
+			HydTab->add(&LowScore);
 				HTController.set_LScore(&LowScore);
 	
-	return &HydTab;
+	return HydTab;
 }

@@ -51,16 +51,16 @@ typedef struct
 	bool RedPenalty;
 	
 } EndData;
-
+	
 typedef struct
 {
 	HydData HydInfo;
 	TeleData TeleInfo;
 	BrdgData BrdgInfo;
 	EndData EndInfo;
-	
+
 } GameData;
-	
+
 typedef struct
 {
 	InitData InitInfo;

@@ -35,9 +35,6 @@ void BridgeTabController::loadData(const BrdgData& BrdgInfo)
 {
 	BalanceType->set_CurRB(BrdgInfo.BalanceType);
 	BalanceAmount->set_CurRB(BrdgInfo.BalanceAmount);
-	
-	// if new match
-	// set all radiobuttons to false (disable)
 }
 
 void BridgeTabController::saveData(BrdgData* BrdgInfo)
@@ -56,11 +53,11 @@ void BridgeTabController::set_BalanceAmount(RBGroup* rbg)
 	BalanceAmount = rbg;
 }
 
-Tab* InitBrdgTab(Controller* superController)
+Tab* initBrdgTab(Controller* superController)
 {
 	BridgeTabController BTController(superController);
 	
-	Tab BrdgTab(kBottomScreen, 128, 0, BridgeTab_Sprite, &BGBridge, &BTController);
+	Tab* BrdgTab = new Tab(kBottomScreen, 128, 0, BridgeTab_Sprite, &BGBridge, &BTController);
 	
 		RBGroup BalanceType;
 		
@@ -76,7 +73,7 @@ Tab* InitBrdgTab(Controller* superController)
 		BalanceType.add(&AttBalCO);
 		BalanceType.add(&None);
 		
-		BrdgTab.add(&BalanceType);
+		BrdgTab->add(&BalanceType);
 			BTController.set_BalanceType(&BalanceType);
 		
 		RBGroup BalanceAmount;
@@ -89,8 +86,8 @@ Tab* InitBrdgTab(Controller* superController)
 		BalanceAmount.add(&TwoBot);
 		BalanceAmount.add(&ThreeBot);
 		
-		BrdgTab.add(&BalanceAmount);
+		BrdgTab->add(&BalanceAmount);
 			BTController.set_BalanceAmount(&BalanceAmount);
 		
-	return &BrdgTab;
+	return BrdgTab;
 }

@@ -52,4 +52,6 @@ private:
 
 };
 
+Tab* initInitTab(Controller* superController);
+
 #endif

@@ -69,3 +69,7 @@ void InitTabController::set_DSNum(NumberSprite* ns)
 {
 	DSNum = ns;
 }
+
+Tab* initInitTab(Controller* superController)
+{
+}

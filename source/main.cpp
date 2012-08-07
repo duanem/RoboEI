@@ -38,17 +38,27 @@ int maxMatches = 0;
 
 bool matchnotfinished = false;
 
+Controller SuperController(NULL);
 int main()
 {
 	// Initialize PAlib
 	PA_Init();
 	fatInitDefault();
 
+	TabGroup* gameTabs = initGameTabs(&SuperController);
+
+	View Everything;
+	
+	Everything.add(gameTabs);
+	
+	Everything.show();
 	// Infinite loop to keep the program running
 	while(true)
 	{
 		// Put your game logic here
-		
+		Everything.handle();
+		Everything.draw();
+		Everything.update();
 		
 		// Wait until the next frame.
 		// The DS runs at 60 frames per second.

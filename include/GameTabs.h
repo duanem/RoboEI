@@ -16,9 +16,9 @@ public:
 	
 	void handleKey();
 	
-	void loadData(const GameData& GameInfo);
+	void loadData(const MatchData& MatchInfo);
 	
-	void saveData(GameData* GameInfo);
+	void saveData(MatchData* MatchInfo);
 	
 	void set_Controllee(TabGroup* tabgroup);
 	
@@ -30,6 +30,6 @@ private:
 	
 };
 
-TabGroup* InitGameTabs(Controller* superController);
+TabGroup* initGameTabs(Controller* superController);
 
 #endif

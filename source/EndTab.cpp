@@ -104,45 +104,45 @@ void EndTabController::set_Finish(SpecialBox* sb)
 	Finish = sb;
 }
 
-Tab* InitEndTab(Controller* superController)
+Tab* initEndTab(Controller* superController)
 {
 	EndTabController ETController(superController);
 	
-	Tab EndTab(kBottomScreen, 192, 0, EndTab_Sprite, &BGEnd, &ETController);
+	Tab* EndTab = new Tab(kBottomScreen, 192, 0, EndTab_Sprite, &BGEnd, &ETController);
 	
 		CheckBox Defensive(kBottomScreen, 100, 60, Defensive_Sprite);
 		
-			EndTab.add(&Defensive);
+			EndTab->add(&Defensive);
 				ETController.set_Defensive(&Defensive);
 		
 		CheckBox Assist(kBottomScreen, 100, 92, Assist_Sprite);
 		
-			EndTab.add(&Assist);
+			EndTab->add(&Assist);
 				ETController.set_Assist(&Assist);
 		
 		NumberSprite Technical(kBottomScreen, 220, 52, Technical_Sprite);
 		NumberSprite Regular(kBottomScreen, 220, 84, Regular_Sprite);
 		
-			EndTab.add(&Technical);
+			EndTab->add(&Technical);
 				ETController.set_Technical(&Technical);
 			
-			EndTab.add(&Regular);
+			EndTab->add(&Regular);
 				ETController.set_Regular(&Regular);
 		
 		SpecialBox YellowPenalty(kBottomScreen, 146, 114, yellow_penalty_Sprite);
 		
-			EndTab.add(&YellowPenalty);
+			EndTab->add(&YellowPenalty);
 				ETController.set_YellowPenalty(&YellowPenalty);
 		
 		SpecialBox RedPenalty(kBottomScreen, 42, 114, red_penalty_Sprite);
 		
-			EndTab.add(&RedPenalty);
+			EndTab->add(&RedPenalty);
 				ETController.set_RedPenalty(&RedPenalty);
 		
 		SpecialBox Finish(kBottomScreen, 160, 156, Finish_Sprite);
 		
-			EndTab.add(&Finish);
+			EndTab->add(&Finish);
 				ETController.set_Finish(&Finish);
 	
-	return &EndTab;
+	return EndTab;
 }
