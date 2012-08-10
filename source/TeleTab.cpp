@@ -147,38 +147,38 @@ Tab* initTeleTab()
 	Tab* TeleTab = new Tab(kBottomScreen, 64, 0, TeleTab_Sprite, &BGTele, Controllers::TTController);
 	
 		// checkboxes (If Occured)
-		CheckBox Disabled(kBottomScreen, 157, 44, Disabled_Sprite);
+		CheckBox* Disabled = new CheckBox(kBottomScreen, 157, 44, Disabled_Sprite);
 		
-			TeleTab->add(&Disabled);
-				Controllers::TTController->set_Disabled(&Disabled);
+			TeleTab->add(Disabled);
+				Controllers::TTController->set_Disabled(Disabled);
 		
-		CheckBox CanLowerBridge(kBottomScreen, 90, 76, CanLowerBridge_Sprite);
+		CheckBox* CanLowerBridge = new CheckBox(kBottomScreen, 90, 76, CanLowerBridge_Sprite);
 		
-			TeleTab->add(&CanLowerBridge);
-				Controllers::TTController->set_LowerBridge(&CanLowerBridge);
+			TeleTab->add(CanLowerBridge);
+				Controllers::TTController->set_LowerBridge(CanLowerBridge);
 		
-		CheckBox TravelAcrossBar(kBottomScreen, 218, 76, TravelAcrossBar_Sprite);
+		CheckBox* TravelAcrossBar = new CheckBox(kBottomScreen, 218, 76, TravelAcrossBar_Sprite);
 		
-			TeleTab->add(&TravelAcrossBar);
-				Controllers::TTController->set_TravelBar(&TravelAcrossBar);
+			TeleTab->add(TravelAcrossBar);
+				Controllers::TTController->set_TravelBar(TravelAcrossBar);
 		
 		// number sprites (Score Locations and Balls PU)
-		NumberSprite BallsPU(kBottomScreen, 100, 127, BALLS_Sprite);
-		NumberSprite TopScoreTele(kBottomScreen, 218, 100, Top_Sprite);
-		NumberSprite MidScoreTele(kBottomScreen, 218, 127, Mid_Sprite);
-		NumberSprite LowScoreTele(kBottomScreen, 218, 154, Low_Sprite);
+		NumberSprite* BallsPU = new NumberSprite(kBottomScreen, 100, 127, BALLS_Sprite);
+		NumberSprite* TopScoreTele = new NumberSprite(kBottomScreen, 218, 100, Top_Sprite);
+		NumberSprite* MidScoreTele = new NumberSprite(kBottomScreen, 218, 127, Mid_Sprite);
+		NumberSprite* LowScoreTele = new NumberSprite(kBottomScreen, 218, 154, Low_Sprite);
 		
-			TeleTab->add(&BallsPU);
-				Controllers::TTController->set_BallsPU(&BallsPU);
+			TeleTab->add(BallsPU);
+				Controllers::TTController->set_BallsPU(BallsPU);
 			
-			TeleTab->add(&TopScoreTele);
-				Controllers::TTController->set_TScore(&TopScoreTele);
+			TeleTab->add(TopScoreTele);
+				Controllers::TTController->set_TScore(TopScoreTele);
 			
-			TeleTab->add(&MidScoreTele);
-				Controllers::TTController->set_MScore(&MidScoreTele);
+			TeleTab->add(MidScoreTele);
+				Controllers::TTController->set_MScore(MidScoreTele);
 			
-			TeleTab->add(&LowScoreTele);
-				Controllers::TTController->set_LScore(&LowScoreTele);
+			TeleTab->add(LowScoreTele);
+				Controllers::TTController->set_LScore(LowScoreTele);
 		
 	return TeleTab;
 }

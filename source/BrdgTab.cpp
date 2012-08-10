@@ -60,35 +60,35 @@ Tab* initBrdgTab()
 	
 	Tab* BrdgTab = new Tab(kBottomScreen, 128, 0, BridgeTab_Sprite, &BGBridge, Controllers::BTController);
 	
-		RBGroup BalanceType;
+		RBGroup* BalanceType = new RBGroup;
 		
-			RadioButton Balance(kBottomScreen, 31, 36, Balanc_Sprite);
-			RadioButton BalanCO(kBottomScreen, 31, 65, BalanCO_Sprite);
-			RadioButton AttBal(kBottomScreen, 31, 96, AttBal_Sprite);
-			RadioButton AttBalCO(kBottomScreen, 31, 125, AttBalCO_Sprite);
-			RadioButton None(kBottomScreen, 31, 156, none_Sprite);
+			RadioButton* Balance = new RadioButton(kBottomScreen, 31, 36, Balanc_Sprite);
+			RadioButton* BalanCO = new RadioButton(kBottomScreen, 31, 65, BalanCO_Sprite);
+			RadioButton* AttBal = new RadioButton(kBottomScreen, 31, 96, AttBal_Sprite);
+			RadioButton* AttBalCO = new RadioButton(kBottomScreen, 31, 125, AttBalCO_Sprite);
+			RadioButton* None = new RadioButton(kBottomScreen, 31, 156, none_Sprite);
 		
-		BalanceType.add(&Balance);
-		BalanceType.add(&BalanCO);
-		BalanceType.add(&AttBal);
-		BalanceType.add(&AttBalCO);
-		BalanceType.add(&None);
+		BalanceType->add(Balance);
+		BalanceType->add(BalanCO);
+		BalanceType->add(AttBal);
+		BalanceType->add(AttBalCO);
+		BalanceType->add(None);
 		
-		BrdgTab->add(&BalanceType);
-			Controllers::BTController->set_BalanceType(&BalanceType);
+		BrdgTab->add(BalanceType);
+			Controllers::BTController->set_BalanceType(BalanceType);
 		
-		RBGroup BalanceAmount;
+		RBGroup* BalanceAmount = new RBGroup;
 		
-			RadioButton OneBot(kBottomScreen, 153, 68, One_Sprite);
-			RadioButton TwoBot(kBottomScreen, 153, 100, Two_Sprite);
-			RadioButton ThreeBot(kBottomScreen, 153, 132, Three_Sprite);
+			RadioButton* OneBot = new RadioButton(kBottomScreen, 153, 68, One_Sprite);
+			RadioButton* TwoBot = new RadioButton(kBottomScreen, 153, 100, Two_Sprite);
+			RadioButton* ThreeBot = new RadioButton(kBottomScreen, 153, 132, Three_Sprite);
 		
-		BalanceAmount.add(&OneBot);
-		BalanceAmount.add(&TwoBot);
-		BalanceAmount.add(&ThreeBot);
+		BalanceAmount->add(OneBot);
+		BalanceAmount->add(TwoBot);
+		BalanceAmount->add(ThreeBot);
 		
-		BrdgTab->add(&BalanceAmount);
-			Controllers::BTController->set_BalanceAmount(&BalanceAmount);
+		BrdgTab->add(BalanceAmount);
+			Controllers::BTController->set_BalanceAmount(BalanceAmount);
 		
 	return BrdgTab;
 }

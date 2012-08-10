@@ -17,8 +17,6 @@
 
 GameTabsController::GameTabsController(Controller* superController)
 : Controller(superController)
-// 4th # on screen
-//, debugger(kTopScreen, 100, 150, Debug_Sprite)
 {
 	mSuperController = superController;
 }
@@ -29,12 +27,7 @@ GameTabsController::~GameTabsController()
 
 void GameTabsController::handleKey()
 {
-	//debugger.show();
-	
 	mControllee->set_NewTab(mControllee->get_CurTab() + Pad.Newpress.Right - Pad.Newpress.Left);
-	
-	//debugger.set_mFrame(1);
-	//debugger.draw();
 	
 	if(mControllee->get_NewTab() < 0)
 	{
@@ -45,14 +38,8 @@ void GameTabsController::handleKey()
 		mControllee->set_NewTab(0);
 	}
 	
-	//debugger.set_mFrame(2);
-	//debugger.draw();
-	
 	if (mSuperController)
 		mSuperController->handleKey();
-		
-	//debugger.set_mFrame(3);
-	//debugger.draw();
 }
 
 void GameTabsController::loadData(const MatchData& MatchInfo)

@@ -129,43 +129,43 @@ Tab* initHydTab()
 	Tab* HydTab = new Tab(kBottomScreen, 0, 0, HybridTab_Sprite, &BGHybrid, Controllers::HTController);
 	
 		// checkboxes (Hybrid Type)
-		CheckBox HasHybrid(kBottomScreen, 88, 40, HasHybrid_Sprite);
+		CheckBox* HasHybrid = new CheckBox(kBottomScreen, 88, 40, HasHybrid_Sprite);
 		
-			HydTab->add(&HasHybrid);
-				Controllers::HTController->set_HasHybrid(&HasHybrid);
+			HydTab->add(HasHybrid);
+				Controllers::HTController->set_HasHybrid(HasHybrid);
 		
-		CheckBox UsesKINECT(kBottomScreen, 224, 40, UsesKINECT_Sprite);
+		CheckBox* UsesKINECT = new CheckBox(kBottomScreen, 224, 40, UsesKINECT_Sprite);
 		
-			HydTab->add(&UsesKINECT);
-				Controllers::HTController->set_UsesKINECT(&UsesKINECT);
+			HydTab->add(UsesKINECT);
+				Controllers::HTController->set_UsesKINECT(UsesKINECT);
 		
 		// radiobuttons (Score Type)
-		RBGroup ScoreType;
+		RBGroup* ScoreType = new RBGroup;
 		
-		RadioButton LowerBridge(kBottomScreen, 32, 64, LwrBrdg_Sprite);
-		RadioButton HybridAssist(kBottomScreen, 96, 64, HybAssist_Sprite);
-		RadioButton Other(kBottomScreen, 160, 64, Other_Sprite);
+		RadioButton* LowerBridge = new RadioButton(kBottomScreen, 32, 64, LwrBrdg_Sprite);
+		RadioButton* HybridAssist = new RadioButton(kBottomScreen, 96, 64, HybAssist_Sprite);
+		RadioButton* Other = new RadioButton(kBottomScreen, 160, 64, Other_Sprite);
 		
-		ScoreType.add(&LowerBridge);
-		ScoreType.add(&HybridAssist);
-		ScoreType.add(&Other);
+		ScoreType->add(LowerBridge);
+		ScoreType->add(HybridAssist);
+		ScoreType->add(Other);
 		
-			HydTab->add(&ScoreType);
-				Controllers::HTController->set_ScoreType(&ScoreType);
+			HydTab->add(ScoreType);
+				Controllers::HTController->set_ScoreType(ScoreType);
 		
 		// number_sprites (Score Locations)
-		NumberSprite TopScore(kBottomScreen, 140, 106, Top_Sprite);
-		NumberSprite MidScore(kBottomScreen, 140, 128, Mid_Sprite);
-		NumberSprite LowScore(kBottomScreen, 140, 150, Low_Sprite);
+		NumberSprite* TopScore = new NumberSprite(kBottomScreen, 140, 106, Top_Sprite);
+		NumberSprite* MidScore = new NumberSprite(kBottomScreen, 140, 128, Mid_Sprite);
+		NumberSprite* LowScore = new NumberSprite(kBottomScreen, 140, 150, Low_Sprite);
 		
-			HydTab->add(&TopScore);
-				Controllers::HTController->set_TScore(&TopScore);
+			HydTab->add(TopScore);
+				Controllers::HTController->set_TScore(TopScore);
 			
-			HydTab->add(&MidScore);
-				Controllers::HTController->set_MScore(&MidScore);
+			HydTab->add(MidScore);
+				Controllers::HTController->set_MScore(MidScore);
 			
-			HydTab->add(&LowScore);
-				Controllers::HTController->set_LScore(&LowScore);
+			HydTab->add(LowScore);
+				Controllers::HTController->set_LScore(LowScore);
 	
 	return HydTab;
 }
