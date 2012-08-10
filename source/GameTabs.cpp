@@ -6,7 +6,7 @@
 #include "Controller.h"
 #include "GameTabs.h"
 
-#include "tab.h"
+#include "Tab.h"
 
 #include "HydTab.h"
 #include "TeleTab.h"

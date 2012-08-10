@@ -14,11 +14,11 @@
 
 #include "Controller.h"
 
-#include "view.h"
-#include "control.h"
+#include "View.h"
+#include "Control.h"
 
-#include "tab.h"
-#include "checkbox.h"
+#include "Tab.h"
+#include "CheckBox.h"
 #include "RadioButton.h"
 #include "NumberSprite.h"
 

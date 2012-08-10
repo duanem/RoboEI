@@ -6,8 +6,8 @@
 
 #include "model.h"
 
-#include "tab.h"
-#include "checkbox.h"
+#include "Tab.h"
+#include "CheckBox.h"
 #include "NumberSprite.h"
 #include "RadioButton.h"
 

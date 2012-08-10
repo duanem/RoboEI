@@ -8,7 +8,7 @@
 
 #include "tab.h"
 #include "NumberSprite.h"
-#include "checkbox.h"
+#include "CheckBox.h"
 
 #include "Controllers.h"
 

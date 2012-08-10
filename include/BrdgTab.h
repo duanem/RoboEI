@@ -6,7 +6,7 @@
 
 #include "model.h"
 
-#include "tab.h"
+#include "Tab.h"
 #include "RadioButton.h"
 
 class BridgeTabController : public Controller {

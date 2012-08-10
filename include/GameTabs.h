@@ -4,7 +4,7 @@
 
 #include "Controller.h"
 
-#include "tab.h"
+#include "Tab.h"
 
 class GameTabsController : public Controller {
 

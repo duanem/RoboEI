@@ -6,10 +6,10 @@
 
 #include "Controller.h"
 
-#include "tab.h"
+#include "Tab.h"
 
 #include "NumberSprite.h"
-#include "checkbox.h"
+#include "CheckBox.h"
 
 #include <vector>
 
