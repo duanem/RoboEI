@@ -10,6 +10,8 @@
 #include "NumberSprite.h"
 #include "checkbox.h"
 
+#include "Controllers.h"
+
 #include <vector>
 
 InitTabController::InitTabController(Controller* superController)
@@ -70,6 +72,6 @@ void InitTabController::set_DSNum(NumberSprite* ns)
 	DSNum = ns;
 }
 
-Tab* initInitTab(Controller* superController)
+Tab* initInitTab()
 {
 }

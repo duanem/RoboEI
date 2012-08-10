@@ -11,6 +11,8 @@
 #include "NumberSprite.h"
 #include "checkbox.h"
 
+#include "Controllers.h"
+
 EndTabController::EndTabController(Controller* superController)
 : Controller(superController)
 {
@@ -104,45 +106,43 @@ void EndTabController::set_Finish(SpecialBox* sb)
 	Finish = sb;
 }
 
-Tab* initEndTab(Controller* superController)
+Tab* initEndTab()
 {
-	EndTabController ETController(superController);
-	
-	Tab* EndTab = new Tab(kBottomScreen, 192, 0, EndTab_Sprite, &BGEnd, &ETController);
+	Tab* EndTab = new Tab(kBottomScreen, 192, 0, EndTab_Sprite, &BGEnd, Controllers::ETController);
 	
 		CheckBox Defensive(kBottomScreen, 100, 60, Defensive_Sprite);
 		
 			EndTab->add(&Defensive);
-				ETController.set_Defensive(&Defensive);
+				Controllers::ETController->set_Defensive(&Defensive);
 		
 		CheckBox Assist(kBottomScreen, 100, 92, Assist_Sprite);
 		
 			EndTab->add(&Assist);
-				ETController.set_Assist(&Assist);
+				Controllers::ETController->set_Assist(&Assist);
 		
 		NumberSprite Technical(kBottomScreen, 220, 52, Technical_Sprite);
 		NumberSprite Regular(kBottomScreen, 220, 84, Regular_Sprite);
 		
 			EndTab->add(&Technical);
-				ETController.set_Technical(&Technical);
+				Controllers::ETController->set_Technical(&Technical);
 			
 			EndTab->add(&Regular);
-				ETController.set_Regular(&Regular);
+				Controllers::ETController->set_Regular(&Regular);
 		
 		SpecialBox YellowPenalty(kBottomScreen, 146, 114, yellow_penalty_Sprite);
 		
 			EndTab->add(&YellowPenalty);
-				ETController.set_YellowPenalty(&YellowPenalty);
+				Controllers::ETController->set_YellowPenalty(&YellowPenalty);
 		
 		SpecialBox RedPenalty(kBottomScreen, 42, 114, red_penalty_Sprite);
 		
 			EndTab->add(&RedPenalty);
-				ETController.set_RedPenalty(&RedPenalty);
+				Controllers::ETController->set_RedPenalty(&RedPenalty);
 		
 		SpecialBox Finish(kBottomScreen, 160, 156, Finish_Sprite);
 		
 			EndTab->add(&Finish);
-				ETController.set_Finish(&Finish);
+				Controllers::ETController->set_Finish(&Finish);
 	
 	return EndTab;
 }

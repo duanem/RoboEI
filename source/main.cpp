@@ -25,6 +25,7 @@
 /// game includes
 #include "main.h"
 #include "IncludeTabs.h"
+#include "Controllers.h"
 
 // constants
 const char* kMatchesFilename = "matches.txt";
@@ -38,18 +39,21 @@ int maxMatches = 0;
 
 bool matchnotfinished = false;
 
-Controller SuperController(NULL);
 int main()
 {
 	// Initialize PAlib
 	PA_Init();
+	PA_InitVBL();
 	fatInitDefault();
-
-	TabGroup* gameTabs = initGameTabs(&SuperController);
+	
+	PA_LoadBackground(kTopScreen, 3, &BGWhite);
+	//1st # on screen
+	NumberSprite Debugger(kTopScreen, 100, 0, Debug_Sprite);
+	Debugger.show();
 
 	View Everything;
 	
-	Everything.add(gameTabs);
+	Everything.add(initGameTabs());
 	
 	Everything.show();
 	// Infinite loop to keep the program running
@@ -57,11 +61,25 @@ int main()
 	{
 		// Put your game logic here
 		Everything.handle();
+		
+		Debugger.set_mFrame(5);
+		Debugger.draw();
+		
 		Everything.draw();
+		
+		Debugger.set_mFrame(6);
+		Debugger.draw();
+		
 		Everything.update();
+		
+		Debugger.set_mFrame(7);
+		Debugger.draw();
 		
 		// Wait until the next frame.
 		// The DS runs at 60 frames per second.
+		PA_WaitForVBL();
+		Debugger.set_mFrame(8);
+		Debugger.draw();
 		PA_WaitForVBL();
 	}
 }

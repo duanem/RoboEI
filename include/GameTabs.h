@@ -28,8 +28,9 @@ private:
 	
 	TabGroup* mControllee;
 	
+	//NumberSprite debugger;
 };
 
-TabGroup* initGameTabs(Controller* superController);
+TabGroup* initGameTabs();
 
 #endif

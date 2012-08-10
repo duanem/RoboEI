@@ -55,6 +55,6 @@ private:
 	
 };
 
-Tab* initEndTab(Controller* superController);
+Tab* initEndTab();
 
 #endif

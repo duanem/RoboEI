@@ -12,6 +12,8 @@
 #include "checkbox.h"
 #include "RadioButton.h"
 
+#include "Controllers.h"
+
 
 HydTabController::HydTabController(Controller* superController)
 : Controller(superController)
@@ -122,22 +124,20 @@ void HydTabController::set_LScore(NumberSprite* ns)
 	LScore = ns;
 }
 
-Tab* initHydTab(Controller* superController)
+Tab* initHydTab()
 {
-	HydTabController HTController(superController);
-	
-	Tab* HydTab = new Tab(kBottomScreen, 0, 0, HybridTab_Sprite, &BGHybrid, &HTController);
+	Tab* HydTab = new Tab(kBottomScreen, 0, 0, HybridTab_Sprite, &BGHybrid, Controllers::HTController);
 	
 		// checkboxes (Hybrid Type)
 		CheckBox HasHybrid(kBottomScreen, 88, 40, HasHybrid_Sprite);
 		
 			HydTab->add(&HasHybrid);
-				HTController.set_HasHybrid(&HasHybrid);
+				Controllers::HTController->set_HasHybrid(&HasHybrid);
 		
 		CheckBox UsesKINECT(kBottomScreen, 224, 40, UsesKINECT_Sprite);
 		
 			HydTab->add(&UsesKINECT);
-				HTController.set_UsesKINECT(&UsesKINECT);
+				Controllers::HTController->set_UsesKINECT(&UsesKINECT);
 		
 		// radiobuttons (Score Type)
 		RBGroup ScoreType;
@@ -151,7 +151,7 @@ Tab* initHydTab(Controller* superController)
 		ScoreType.add(&Other);
 		
 			HydTab->add(&ScoreType);
-				HTController.set_ScoreType(&ScoreType);
+				Controllers::HTController->set_ScoreType(&ScoreType);
 		
 		// number_sprites (Score Locations)
 		NumberSprite TopScore(kBottomScreen, 140, 106, Top_Sprite);
@@ -159,13 +159,13 @@ Tab* initHydTab(Controller* superController)
 		NumberSprite LowScore(kBottomScreen, 140, 150, Low_Sprite);
 		
 			HydTab->add(&TopScore);
-				HTController.set_TScore(&TopScore);
+				Controllers::HTController->set_TScore(&TopScore);
 			
 			HydTab->add(&MidScore);
-				HTController.set_MScore(&MidScore);
+				Controllers::HTController->set_MScore(&MidScore);
 			
 			HydTab->add(&LowScore);
-				HTController.set_LScore(&LowScore);
+				Controllers::HTController->set_LScore(&LowScore);
 	
 	return HydTab;
 }

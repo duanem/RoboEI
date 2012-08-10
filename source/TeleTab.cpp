@@ -11,6 +11,8 @@
 #include "NumberSprite.h"
 #include "checkbox.h"
 
+#include "Controllers.h"
+
 TeleTabController::TeleTabController(Controller* superController)
 : Controller(superController)
 {
@@ -140,28 +142,25 @@ void TeleTabController::set_LScore(NumberSprite* ns)
 }
 
 
-Tab* initTeleTab(Controller* superController)
-{
-
-	TeleTabController TTController(superController);
-	
-	Tab* TeleTab = new Tab(kBottomScreen, 64, 0, TeleTab_Sprite, &BGTele, &TTController);
+Tab* initTeleTab()
+{	
+	Tab* TeleTab = new Tab(kBottomScreen, 64, 0, TeleTab_Sprite, &BGTele, Controllers::TTController);
 	
 		// checkboxes (If Occured)
 		CheckBox Disabled(kBottomScreen, 157, 44, Disabled_Sprite);
 		
 			TeleTab->add(&Disabled);
-				TTController.set_Disabled(&Disabled);
+				Controllers::TTController->set_Disabled(&Disabled);
 		
 		CheckBox CanLowerBridge(kBottomScreen, 90, 76, CanLowerBridge_Sprite);
 		
 			TeleTab->add(&CanLowerBridge);
-				TTController.set_LowerBridge(&CanLowerBridge);
+				Controllers::TTController->set_LowerBridge(&CanLowerBridge);
 		
 		CheckBox TravelAcrossBar(kBottomScreen, 218, 76, TravelAcrossBar_Sprite);
 		
 			TeleTab->add(&TravelAcrossBar);
-				TTController.set_TravelBar(&TravelAcrossBar);
+				Controllers::TTController->set_TravelBar(&TravelAcrossBar);
 		
 		// number sprites (Score Locations and Balls PU)
 		NumberSprite BallsPU(kBottomScreen, 100, 127, BALLS_Sprite);
@@ -170,16 +169,16 @@ Tab* initTeleTab(Controller* superController)
 		NumberSprite LowScoreTele(kBottomScreen, 218, 154, Low_Sprite);
 		
 			TeleTab->add(&BallsPU);
-				TTController.set_BallsPU(&BallsPU);
+				Controllers::TTController->set_BallsPU(&BallsPU);
 			
 			TeleTab->add(&TopScoreTele);
-				TTController.set_TScore(&TopScoreTele);
+				Controllers::TTController->set_TScore(&TopScoreTele);
 			
 			TeleTab->add(&MidScoreTele);
-				TTController.set_MScore(&MidScoreTele);
+				Controllers::TTController->set_MScore(&MidScoreTele);
 			
 			TeleTab->add(&LowScoreTele);
-				TTController.set_LScore(&LowScoreTele);
+				Controllers::TTController->set_LScore(&LowScoreTele);
 		
 	return TeleTab;
 }

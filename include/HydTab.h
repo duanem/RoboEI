@@ -51,6 +51,6 @@ private:
 	NumberSprite* LScore;
 };
 
-Tab* initHydTab(Controller* superController);
+Tab* initHydTab();
 
 #endif

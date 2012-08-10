@@ -52,6 +52,6 @@ private:
 	NumberSprite* LScore;
 };
 
-Tab* initTeleTab(Controller* superController);
+Tab* initTeleTab();
 
 #endif

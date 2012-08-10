@@ -10,6 +10,8 @@
 #include "Controller.h"
 #include "RadioButton.h"
 
+#include "Controllers.h"
+
 BridgeTabController::BridgeTabController(Controller* superController)
 : Controller(superController)
 {
@@ -53,11 +55,10 @@ void BridgeTabController::set_BalanceAmount(RBGroup* rbg)
 	BalanceAmount = rbg;
 }
 
-Tab* initBrdgTab(Controller* superController)
+Tab* initBrdgTab()
 {
-	BridgeTabController BTController(superController);
 	
-	Tab* BrdgTab = new Tab(kBottomScreen, 128, 0, BridgeTab_Sprite, &BGBridge, &BTController);
+	Tab* BrdgTab = new Tab(kBottomScreen, 128, 0, BridgeTab_Sprite, &BGBridge, Controllers::BTController);
 	
 		RBGroup BalanceType;
 		
@@ -74,7 +75,7 @@ Tab* initBrdgTab(Controller* superController)
 		BalanceType.add(&None);
 		
 		BrdgTab->add(&BalanceType);
-			BTController.set_BalanceType(&BalanceType);
+			Controllers::BTController->set_BalanceType(&BalanceType);
 		
 		RBGroup BalanceAmount;
 		
@@ -87,7 +88,7 @@ Tab* initBrdgTab(Controller* superController)
 		BalanceAmount.add(&ThreeBot);
 		
 		BrdgTab->add(&BalanceAmount);
-			BTController.set_BalanceAmount(&BalanceAmount);
+			Controllers::BTController->set_BalanceAmount(&BalanceAmount);
 		
 	return BrdgTab;
 }

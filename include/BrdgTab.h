@@ -36,6 +36,6 @@ private:
 	
 };
 
-Tab* initBrdgTab(Controller* superController);
+Tab* initBrdgTab();
 
 #endif
