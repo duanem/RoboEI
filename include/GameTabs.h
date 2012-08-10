@@ -16,9 +16,9 @@ public:
 	
 	void handleKey();
 	
-	void loadData(const MatchData& MatchInfo);
+	void loadData(const GameData& GameInfo);
 	
-	void saveData(MatchData* MatchInfo);
+	void saveData(GameData* GameInfo);
 	
 	void set_Controllee(TabGroup* tabgroup);
 	

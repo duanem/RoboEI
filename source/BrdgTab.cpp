@@ -24,7 +24,7 @@ BridgeTabController::~BridgeTabController()
 
 void BridgeTabController::handleKey()
 {
-	if(BalanceType->get_CurRB() == 4)
+	if(BalanceType->get_CurRB() == 4 || BalanceType->get_CurRB() == -1)
 	{
 		BalanceAmount->disable();
 	}
@@ -58,7 +58,7 @@ void BridgeTabController::set_BalanceAmount(RBGroup* rbg)
 Tab* initBrdgTab()
 {
 	
-	Tab* BrdgTab = new Tab(kBottomScreen, 128, 0, BridgeTab_Sprite, &BGBridge, Controllers::BTController);
+	Tab* BrdgTab = new Tab(kBottomScreen, 128, 0, BridgeTab_Sprite, &BGBridge, Controllers::brdgTabController);
 	
 		RBGroup* BalanceType = new RBGroup;
 		
@@ -75,7 +75,7 @@ Tab* initBrdgTab()
 		BalanceType->add(None);
 		
 		BrdgTab->add(BalanceType);
-			Controllers::BTController->set_BalanceType(BalanceType);
+			Controllers::brdgTabController->set_BalanceType(BalanceType);
 		
 		RBGroup* BalanceAmount = new RBGroup;
 		
@@ -88,7 +88,7 @@ Tab* initBrdgTab()
 		BalanceAmount->add(ThreeBot);
 		
 		BrdgTab->add(BalanceAmount);
-			Controllers::BTController->set_BalanceAmount(BalanceAmount);
-		
+			Controllers::brdgTabController->set_BalanceAmount(BalanceAmount);
+	
 	return BrdgTab;
 }

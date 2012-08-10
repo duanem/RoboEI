@@ -59,6 +59,7 @@ void EndTabController::loadData(const EndData& EndInfo)
 	Regular->set_mFrame(EndInfo.Regular);
 	YellowPenalty->set_mFrame(EndInfo.YellowPenalty);
 	RedPenalty->set_mFrame(EndInfo.RedPenalty);
+	Finish->set_mFrame(EndInfo.Finish);
 }
 
 void EndTabController::saveData(EndData* EndInfo)
@@ -106,43 +107,53 @@ void EndTabController::set_Finish(SpecialBox* sb)
 	Finish = sb;
 }
 
+bool EndTabController::getFinishFrame()
+{
+	return Finish->get_mFrame();
+}
+
 Tab* initEndTab()
 {
-	Tab* EndTab = new Tab(kBottomScreen, 192, 0, EndTab_Sprite, &BGEnd, Controllers::ETController);
+	Tab* EndTab = new Tab(kBottomScreen, 192, 0, EndTab_Sprite, &BGEnd, Controllers::endTabController);
 	
 		CheckBox* Defensive = new CheckBox(kBottomScreen, 100, 60, Defensive_Sprite);
 		
 			EndTab->add(Defensive);
-				Controllers::ETController->set_Defensive(Defensive);
+				Controllers::endTabController->set_Defensive(Defensive);
 		
 		CheckBox* Assist = new CheckBox(kBottomScreen, 100, 92, Assist_Sprite);
 		
 			EndTab->add(Assist);
-				Controllers::ETController->set_Assist(Assist);
+				Controllers::endTabController->set_Assist(Assist);
 		
 		NumberSprite* Technical = new NumberSprite(kBottomScreen, 220, 52, Technical_Sprite);
 		NumberSprite* Regular = new NumberSprite(kBottomScreen, 220, 84, Regular_Sprite);
 		
 			EndTab->add(Technical);
-				Controllers::ETController->set_Technical(Technical);
+				Controllers::endTabController->set_Technical(Technical);
 			
 			EndTab->add(Regular);
-				Controllers::ETController->set_Regular(Regular);
+				Controllers::endTabController->set_Regular(Regular);
 		
 		SpecialBox* YellowPenalty = new SpecialBox(kBottomScreen, 146, 114, yellow_penalty_Sprite);
 		
 			EndTab->add(YellowPenalty);
-				Controllers::ETController->set_YellowPenalty(YellowPenalty);
+				Controllers::endTabController->set_YellowPenalty(YellowPenalty);
 		
 		SpecialBox* RedPenalty = new SpecialBox(kBottomScreen, 42, 114, red_penalty_Sprite);
 		
 			EndTab->add(RedPenalty);
-				Controllers::ETController->set_RedPenalty(RedPenalty);
+				Controllers::endTabController->set_RedPenalty(RedPenalty);
 		
 		SpecialBox* Finish = new SpecialBox(kBottomScreen, 160, 156, Finish_Sprite);
 		
 			EndTab->add(Finish);
-				Controllers::ETController->set_Finish(Finish);
+				Controllers::endTabController->set_Finish(Finish);
 	
 	return EndTab;
+}
+
+bool endMatch()
+{
+	return Controllers::endTabController->getFinishFrame();
 }

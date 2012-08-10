@@ -2,17 +2,25 @@
 #ifndef _game_Model_h
 #define _game_Model_h
 
-typedef struct
+struct InitData
 {
+	InitData();
+	
+	~InitData();
+	
 	int DSNum;
 	int MatchNum;
 	int TeamNum;
 	bool AllianceColor;
 	
-} InitData;
+};
 
-typedef struct
+struct HydData
 {
+	HydData();
+	
+	~HydData();
+	
 	bool HasHybrid;
 	bool UsesKINECT;
 	int ScoreType;
@@ -20,11 +28,16 @@ typedef struct
 	int MidP;
 	int LowP;
 	
-} HydData;
+};
 
-typedef struct
+struct TeleData
 {
+	TeleData();
+	
+	~TeleData();
+	
 	bool Disabled;
+	int DisabledCounter;
 	bool Bridge;
 	bool Bar;
 	int BallsPU;
@@ -32,40 +45,57 @@ typedef struct
 	int MidP;
 	int LowP;
 
-} TeleData;
+};
 
-typedef struct
+struct BrdgData
 {
+	BrdgData();
+	
+	~BrdgData();
+	
 	int BalanceType;
 	int BalanceAmount;
 
-} BrdgData;
+};
 
-typedef struct
+struct EndData
 {
+	EndData();
+	
+	~EndData();
+	
 	bool Defensive;
 	bool Assist;
 	int Technical;
 	int Regular;
 	bool YellowPenalty;
 	bool RedPenalty;
+	bool Finish;
 	
-} EndData;
+};
 	
-typedef struct
+struct GameData
 {
+	GameData();
+	
+	~GameData();
+	
 	HydData HydInfo;
 	TeleData TeleInfo;
 	BrdgData BrdgInfo;
 	EndData EndInfo;
 
-} GameData;
+};
 
-typedef struct
+struct MatchData
 {
+	MatchData();
+	
+	~MatchData();
+	
 	InitData InitInfo;
 	GameData GameInfo;
 	
-} MatchData;
+};
 
 #endif

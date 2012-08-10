@@ -6,9 +6,11 @@
 namespace Controllers
 {
 	Controller* Super = new Controller(NULL);
-	GameTabsController* GTController = new GameTabsController(Super);
-	HydTabController* HTController = new HydTabController(GTController);
-	TeleTabController* TTController = new TeleTabController(GTController);
-	BridgeTabController* BTController = new BridgeTabController(GTController);
-	EndTabController* ETController = new EndTabController(GTController);
+		GameTabsController* gameTabsController = new GameTabsController(Super);
+			HydTabController* hydTabController = new HydTabController(gameTabsController);
+			TeleTabController* teleTabController = new TeleTabController(gameTabsController);
+			BridgeTabController* brdgTabController = new BridgeTabController(gameTabsController);
+			EndTabController* endTabController = new EndTabController(gameTabsController);
+		InfoTabsController* infoTabsController = new InfoTabsController(Super);
+			InitTabController* initTabController = new InitTabController(infoTabsController);
 }

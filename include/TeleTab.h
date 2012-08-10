@@ -50,6 +50,8 @@ private:
 	NumberSprite* TScore;
 	NumberSprite* MScore;
 	NumberSprite* LScore;
+	
+	int DisabledCounter;
 };
 
 Tab* initTeleTab();

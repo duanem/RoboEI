@@ -37,35 +37,47 @@ struct MATCH MatchList [kMaxMatches];
 int dsnumber = 0;
 int maxMatches = 0;
 
+MatchData MatchInfo;
+
 bool matchnotfinished = false;
 
 int main()
 {
-	// Initialize PAlib
+
 	PA_Init();
 	PA_InitVBL();
 	fatInitDefault();
+	
+	maxMatches = Loadmatches();
+	printf("after Loadmatches();\n");
+	
+	View Rebound;
+	
+	Rebound.add(initGameTabs());
+	Rebound.add(initInfoTabs());
 
-	View Everything;
-	
-	Everything.add(initGameTabs());
-	Everything.add(initInfoTabs());
-	
-	Everything.show();
-	
-	// Infinite loop to keep the program running
 	while(true)
 	{
-		// Put your game logic here
-		Everything.handle();
+		loadMatch(MatchInfo);
 		
-		Everything.draw();
+		Rebound.show();
 		
-		Everything.update();
+		while(!endMatch())
+		{
+			Rebound.handle();
+			Rebound.draw();
+			Rebound.update();
+			
+			PA_WaitForVBL();
+		}
 		
-		// Wait until the next frame.
-		// The DS runs at 60 frames per second.
-		PA_WaitForVBL();
+		saveMatch(&MatchInfo);
+		writeInfo();
+		++MatchInfo.InitInfo.MatchNum;
+		writeMatch(MatchInfo.InitInfo.MatchNum);
+		MatchInfo = MatchData();
+		
+		Rebound.hide();
 	}
 }
 
@@ -97,9 +109,7 @@ int Loadmatches()
 	
 	fclose(testRead);
 	
-	// done with reading the matches, now assign DS number
-	
-	testRead = fopen(kDSFilename, "rb");
+	testRead = fopen(kDSFilename, "rb");	// "rb" = read
 	if(testRead)
 	{
 		result = fscanf(testRead, "%d\n\r", &dsnumber);
@@ -113,7 +123,7 @@ int Loadmatches()
 void Loadrobotpic(int robotnum)
 {
 	//PA_InitText(1, 0);
-	//PA_OutputText(1, 0, 23, "Team:%d", MatchList[Matchinfo.InitInfo.MatchNum-1].RobotNo[dsnumber-1] );
+	//PA_OutputText(1, 0, 23, "Team:%d", MatchList[MatchInfo.InitInfo.MatchNum-1].RobotNo[dsnumber-1] );
 	
  	char* imgName = "Images/0000.gif";
 	sprintf(imgName, "Images/%d.gif", robotnum);
@@ -163,10 +173,71 @@ void Loadrobotpic(int robotnum)
 
 void writeInfo()
 {
+	FILE* dataFile = fopen("data.txt", "ab");
+	fprintf(dataFile, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\r\n",
+	
+	MatchInfo.InitInfo.MatchNum,
+	MatchInfo.InitInfo.TeamNum,
+	MatchInfo.InitInfo.AllianceColor,
+	
+	MatchInfo.GameInfo.HydInfo.HasHybrid,
+	MatchInfo.GameInfo.HydInfo.UsesKINECT,
+	MatchInfo.GameInfo.HydInfo.ScoreType,
+	MatchInfo.GameInfo.HydInfo.TopP,
+	MatchInfo.GameInfo.HydInfo.MidP,
+	MatchInfo.GameInfo.HydInfo.LowP,
+	
+	MatchInfo.GameInfo.TeleInfo.Disabled,
+	MatchInfo.GameInfo.TeleInfo.DisabledCounter,
+	MatchInfo.GameInfo.TeleInfo.Bridge,
+	MatchInfo.GameInfo.TeleInfo.Bar,
+	MatchInfo.GameInfo.TeleInfo.BallsPU,
+	MatchInfo.GameInfo.TeleInfo.TopP,
+	MatchInfo.GameInfo.TeleInfo.MidP,
+	MatchInfo.GameInfo.TeleInfo.LowP,
+	
+	MatchInfo.GameInfo.BrdgInfo.BalanceType,
+	MatchInfo.GameInfo.BrdgInfo.BalanceAmount,
+	
+	MatchInfo.GameInfo.EndInfo.Defensive,
+	MatchInfo.GameInfo.EndInfo.Assist,
+	MatchInfo.GameInfo.EndInfo.Technical,
+	MatchInfo.GameInfo.EndInfo.Regular,
+	MatchInfo.GameInfo.EndInfo.YellowPenalty,
+	MatchInfo.GameInfo.EndInfo.RedPenalty);
+	
+	fclose(dataFile);
 }
 
-void loadMatch(int matchNum)
+void loadMatch(const MatchData& MatchToLoad)
 {
+	using namespace Controllers;
+	
+	Super->loadData();
+		gameTabsController->loadData(MatchToLoad.GameInfo);
+			hydTabController->loadData(MatchToLoad.GameInfo.HydInfo);
+			teleTabController->loadData(MatchToLoad.GameInfo.TeleInfo);
+			brdgTabController->loadData(MatchToLoad.GameInfo.BrdgInfo);
+			endTabController->loadData(MatchToLoad.GameInfo.EndInfo);
+		infoTabsController->loadData(MatchToLoad);
+			initTabController->loadData(MatchToLoad.InitInfo);
+			
+}
+
+void saveMatch(MatchData* MatchToSave)
+{
+	using namespace Controllers;
+	
+	Super->saveData();
+		gameTabsController->saveData(&MatchToSave->GameInfo);
+			hydTabController->saveData(&MatchToSave->GameInfo.HydInfo);
+			teleTabController->saveData(&MatchToSave->GameInfo.TeleInfo);
+			brdgTabController->saveData(&MatchToSave->GameInfo.BrdgInfo);
+			endTabController->saveData(&MatchToSave->GameInfo.EndInfo);
+		
+		infoTabsController->saveData(MatchToSave);
+			initTabController->saveData(&MatchToSave->InitInfo);
+	
 }
 
 int readMatch()

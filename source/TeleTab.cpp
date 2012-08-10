@@ -15,6 +15,7 @@
 
 TeleTabController::TeleTabController(Controller* superController)
 : Controller(superController)
+, DisabledCounter(0)
 {
 	mSuperController = superController;
 }
@@ -71,8 +72,7 @@ void TeleTabController::handleKey()
 		else if(Pad.Newpress.B)
 		{
 			LScore->inc_mFrame();
-		}
-		
+		}		
 	}
 	else
 	{
@@ -87,6 +87,7 @@ void TeleTabController::handleKey()
 void TeleTabController::loadData(const TeleData& TeleInfo)
 {
 	Disabled->set_mFrame(TeleInfo.Disabled);
+	DisabledCounter = TeleInfo.DisabledCounter;
 	LowerBridge->set_mFrame(TeleInfo.Bridge);
 	TravelBar->set_mFrame(TeleInfo.Bar);
 	BallsPU->set_mFrame(TeleInfo.BallsPU);
@@ -98,6 +99,7 @@ void TeleTabController::loadData(const TeleData& TeleInfo)
 void TeleTabController::saveData(TeleData* TeleInfo)
 {
 	TeleInfo->Disabled = Disabled->get_mFrame();
+	TeleInfo->DisabledCounter = DisabledCounter;
 	TeleInfo->Bridge = LowerBridge->get_mFrame();
 	TeleInfo->Bar = TravelBar->get_mFrame();
 	TeleInfo->BallsPU = BallsPU->get_mFrame();
@@ -144,23 +146,23 @@ void TeleTabController::set_LScore(NumberSprite* ns)
 
 Tab* initTeleTab()
 {	
-	Tab* TeleTab = new Tab(kBottomScreen, 64, 0, TeleTab_Sprite, &BGTele, Controllers::TTController);
+	Tab* TeleTab = new Tab(kBottomScreen, 64, 0, TeleTab_Sprite, &BGTele, Controllers::teleTabController);
 	
 		// checkboxes (If Occured)
 		CheckBox* Disabled = new CheckBox(kBottomScreen, 157, 44, Disabled_Sprite);
 		
 			TeleTab->add(Disabled);
-				Controllers::TTController->set_Disabled(Disabled);
+				Controllers::teleTabController->set_Disabled(Disabled);
 		
 		CheckBox* CanLowerBridge = new CheckBox(kBottomScreen, 90, 76, CanLowerBridge_Sprite);
 		
 			TeleTab->add(CanLowerBridge);
-				Controllers::TTController->set_LowerBridge(CanLowerBridge);
+				Controllers::teleTabController->set_LowerBridge(CanLowerBridge);
 		
 		CheckBox* TravelAcrossBar = new CheckBox(kBottomScreen, 218, 76, TravelAcrossBar_Sprite);
 		
 			TeleTab->add(TravelAcrossBar);
-				Controllers::TTController->set_TravelBar(TravelAcrossBar);
+				Controllers::teleTabController->set_TravelBar(TravelAcrossBar);
 		
 		// number sprites (Score Locations and Balls PU)
 		NumberSprite* BallsPU = new NumberSprite(kBottomScreen, 100, 127, BALLS_Sprite);
@@ -169,16 +171,16 @@ Tab* initTeleTab()
 		NumberSprite* LowScoreTele = new NumberSprite(kBottomScreen, 218, 154, Low_Sprite);
 		
 			TeleTab->add(BallsPU);
-				Controllers::TTController->set_BallsPU(BallsPU);
+				Controllers::teleTabController->set_BallsPU(BallsPU);
 			
 			TeleTab->add(TopScoreTele);
-				Controllers::TTController->set_TScore(TopScoreTele);
+				Controllers::teleTabController->set_TScore(TopScoreTele);
 			
 			TeleTab->add(MidScoreTele);
-				Controllers::TTController->set_MScore(MidScoreTele);
+				Controllers::teleTabController->set_MScore(MidScoreTele);
 			
 			TeleTab->add(LowScoreTele);
-				Controllers::TTController->set_LScore(LowScoreTele);
-		
+				Controllers::teleTabController->set_LScore(LowScoreTele);
+
 	return TeleTab;
 }

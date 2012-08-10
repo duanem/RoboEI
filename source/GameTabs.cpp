@@ -42,11 +42,11 @@ void GameTabsController::handleKey()
 		mSuperController->handleKey();
 }
 
-void GameTabsController::loadData(const MatchData& MatchInfo)
+void GameTabsController::loadData(const GameData& GameInfo)
 {
 }
 
-void GameTabsController::saveData(MatchData* MatchInfo)
+void GameTabsController::saveData(GameData* GameInfo)
 {
 }
 
@@ -58,14 +58,14 @@ void GameTabsController::set_Controllee(TabGroup* tabgroup)
 TabGroup* initGameTabs()
 {
 	
-	TabGroup* GameTabs = new TabGroup(Controllers::GTController);
+	TabGroup* GameTabs = new TabGroup(Controllers::gameTabsController);
 
 		GameTabs->add(initHydTab());
 		GameTabs->add(initTeleTab());
 		GameTabs->add(initBrdgTab());
 		GameTabs->add(initEndTab());
 		
-	Controllers::GTController->set_Controllee(GameTabs);
+	Controllers::gameTabsController->set_Controllee(GameTabs);
 	
 	return GameTabs;
 }

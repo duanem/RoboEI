@@ -39,6 +39,8 @@ public:
 	
 	void set_Finish(SpecialBox* sb);
 	
+	bool getFinishFrame();
+	
 private:
 
 	Controller* mSuperController;
@@ -56,5 +58,7 @@ private:
 };
 
 Tab* initEndTab();
+
+bool endMatch();
 
 #endif
