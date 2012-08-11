@@ -1,0 +1,267 @@
+
+
+Mission:
+
+	To create an intuitive system of code used to display and handle the scouting systems
+	used currently by FIRST Team 701 each year with the FIRST Robotics Competition on the
+	Nintendo DS system by designing an interface that is user friendly and simple to program.
+	
+
+MODEL VIEW CONTROLLER (MVC)
+
+			data
+			Model
+			>	<
+			/   \
+		View<--Controller
+	output				input
+
+
+CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
+
+	*Versions below version 1.0.0 are not usable for data analysis
+
+	VERSION 0.7.0 - FIRST VERSION - VIEW
+
+		Full Support for displaying sprites (based off objects View, Control, CheckBox, 
+		on bottom screen		     NumberSprite, RadioButton, RB_Group, Tab, 
+						     and Tab_Group)
+
+		I-Stream for Button Presses
+
+		Set_Value Supported for NumberSprite objects
+
+		Screen based Coordinates (based off position 0, 0 in upper left)
+
+		KNOWN BUGS/PROJECTS:
+			BUG: Cannot set value for radio button, tab, or checkbox objects
+				ISSUE: no set_mFrame() function, and draw updates inside if statements
+				SOLUTION: add set_mFrame, move PA_SetSpriteAnim() outside of if statements
+
+	VERSION 0.7.1
+		
+		Set_Value Supported for all objects
+
+		KNOWN BUGS/PROJECTS:
+			PROJECT: display views on both screens
+			
+			PROJECT: display .gif images
+
+	VERSION 0.7.2
+
+		Full Support for displaying all Views on both screens
+
+		Load Robot Pic added in main.h
+
+		KNOWN BUGS/PROJECTS:
+			BUG: Sprites on Top Screen Only Display in Black
+				ISSUE: No pallet loaded for top screen
+				SOLUTION: Make Pallets Screen Insensitive - Allow All Sprites To Be Displayed on Both Screens
+						pallets on different screens can have the same number and the same name.
+						now a pallet is loaded for both top and bottom screen for every different object :)
+				
+			BUG: Tabs on Top Screen Not Displaying
+				ISSUE: Pallets are not loaded on top screen
+				SOLUTION: previous bug fixed = current bug fix
+
+	VERSION 0.7.3
+
+		Top Screen Pallets loaded and supported and tabs on top screen are now displayed
+
+		KNOWN BUGS/PROJECTS:
+			BUG: TabGroups on top screen scroll with left and right keys as well
+				ISSUE: custom button presses not supported with tab_group
+				SOLUTION: add set_mKeys() function to tab_groups, custom key inputs now available
+					WARNING - NOT BEST SOLUTION - A,B,X,Y,L,R,Start,Select should not be 
+								      available for use, only up/down / right/left
+
+			BUG: TabGroups do not wrap properly if not 4 tabs in size
+				ISSUE: wrapping code only supports 4 tab TabGroup sizes
+				SOLUTIOn: rewrite wrapping code with 0 and Tabs.size()-1 as first and last members of
+						a TabGroup, setting the newtab to first and last if the button presses 
+						go beyond first and last
+
+	VERSION 0.7.4
+
+		TabGroups have custom key_presses, and rewrite of TabGroups wrapping to support TabGroups of all sizes
+
+		KNOWN BUGS/PROJECTS:
+			BUG: HydTab on top screen is glitching and displaying parts of a checkbox from teleTab on top screen
+				ISSUE: a sprite is being deleted that does not exist (title sprite for CheckBox Disabled for TeleTab on topscreen)
+				SOLUTION: inilization of CheckBox had the title of a checkbox always inilized with a sprite number from
+						the pool of numbers for the bottom screen, even if it was on top screen = TYPO
+
+	VERSION 0.7.5
+
+		fixed an issue where checkbox titles where initilized from the wrong sprite number pool
+
+		KNOWN BUGS/PROJECTS:
+			BUG: Presses on bottom screen changing sprites on top screens 
+				(corresponding objects are: HydTab and HydTabTop, HasHybrid and HasHybridTop, 
+				 BridgeTab and TeleTab, Disabled and Balanc/BalanCO, None and EndTab)
+				ISSUE: Corresponding Sprites have The Same Sprite Numbers, just on different screens.  
+			       	       PA_SpriteTouched(u8) must not compensate for the fact that presses must be on bottom screen.
+				SOLUTION: Whenever Checking for PA_SpriteTouched(u8), check that the sprite is on the bottom screen
+
+			BUG: NumberSprites are being changed by keys even when they have no key set
+				ISSUE: there is no default binding for NO KEY
+				SOLUTION: dev<input.h> enum of keys was changed, KEY_NONE added, to correspond to no key, 
+						default key for numbersprites is KEY_NONE
+		
+	VERSION 0.7.6
+	
+		cleaned up code a bit - lots of comments in header files, organizing complete
+		
+		fixed an issue where presses on the bottom screen were changing sprites on the top screen
+		
+		fixed an issue where NumberSprites were being changed by keys with no key set
+		
+		KNOWN BUGS/PROJECTS:
+			BUG: Sprite Numbers run out when using NumberSprite objects for a long time
+				ISSUE: code for adding digit uses a sprite number every time the current number of digits is less 
+						than the greatest number of digits at one time
+				SOLUTION: changed a != to a > in the if statement for adding a sprite number to a NumberSprite object in 
+							NumberSprite::add_digit()
+							
+			BUG: NumberSprite objects seem to lag when using set_value with large numbers
+				ISSUE: only one digit was added each time through the function NumberSprite::draw()
+				SOLUTION: changed if statements to while loops, all digits are added in one run of draw() when using set_value
+				
+	VERSION 0.7.7
+	
+		fixed an issue where sprite numbers where running out due to calls from NumberSprite::add_digit()
+		
+		fixed an issue where NumberSprite objects where lagging when set to large values pre_shown
+		
+		KNOWN BUGS/PROJECTS:
+			BUG: Robot Picture not displaying to screen (shouldve been found a long time ago)
+				ISSUE: No Fat Library initilized
+				SOLUTION: initilized fat library and waited for frame update before displaying .gif image
+				
+	VERSION 0.7.8
+	
+		fixed an issue where pictures (.gif images) where not displaying to the screen
+		
+		KNOWN BUGS/PROJECTS:
+			PROJECT: seperate keys from view objects
+			
+			PROJECT: seperate game(changeable) from AF(const)
+			
+	VERSION 0.8.0 - GETTING CLOSER TO THE GOAL - CONTROLLER
+		
+		REDUX OVERHAUL!
+		
+			Init MVC style code -> Views are seperate from the keys controlling them
+			
+			Controller class + subclasses added -> handles key presses for tabs and tab groups
+			
+			Reorganized files, The game for each year is now completely seperate from the AF
+			
+		KNOWN BUGS/PROJECTS:
+			BUG: Screen does not display at all
+				ISSUE: call of NULL function stopped program from getting to the drawing on the screen
+				SOLUTION: put a protection around the call of function to prevent from calling NULL
+				
+			PROJECT: recreate the look of the program from before the changes (the game)
+				
+	VERSION 0.8.1 
+			
+		fixed bug where call of NULL function created hitch in program
+		
+		KNOWN BUGS/PROJECTS:
+			PROJECT: recreate the 2012 game
+			
+			BUG: Title of NumberSprite does not shift back when hiding a digit
+				ISSUE: del_digit does not shift the position of the title back
+				SOLUTION: shift title back in del_digit
+				
+			BUG: Screen touches does not work on tabGroups
+				ISSUE: always defaulting to handleKey()
+				SOLUTION: put handleKey() in an else block
+				
+	VERSION 0.8.2
+	
+		fixed bugs of previous version
+		
+		finished recreating the look and behavior of the Bottom Screen for Rebound Rumble
+		
+		created SpecialBox -> subclass CheckBox that works like a CheckBox but looks different
+		
+		KNOWN BUGS/PROJECTS:
+			PROJECT: create the model (data)
+			
+			BUG: nopic does not display at all!
+				ISSUE: call of name
+				SOLUTION: told it to look in the right directory for the file
+				
+	VERSION 0.8.3
+	
+		fixed bug of nopic image not displaying (after 3 years of attempts)
+		
+		KNOWN BUGS/PROJECTS:
+			PROJECT: model!
+			
+	VERSION 0.8.4
+	
+		added top screen init tab 
+			
+	VERSION 0.9.0 - ALMOST THERE! - MODEL
+
+		model.h file -> includes all information for saving data from each tab
+
+		controllers now read in a data struct (for corresponding model) and both save and load data to and from that struct
+
+		functions implement creation of views
+
+		KNOWN BUGS/PROJECTS:
+			BUG: no display to screen
+				ISSUE: local variable referance return
+				SOLUTION: dynamic memory
+
+			PROJECT: implement match system (main)
+
+	VERSION 0.9.1
+	
+		fixed issue with nothing displaying to the screen
+		
+		KNOWN BUGS/PROJECTS:
+			BUG: contents of tabs do not display to the screen
+				ISSUE: using addresses of local variables to add to tabs
+				SOLUTION: call new when creating local variables that need to be accessed later
+				
+			BUG: tabs do not handle touches or scrolling
+				ISSUE: not getting to the handle function
+				SOLUTION: solve other issues dealing with display to allow the function to be reached
+
+	VERSION 1.0.0
+
+		implemented match system
+
+		data saving and loading
+
+		full support for competition
+
+		KNOWN BUGS/PROJECTS:
+			BUG: data from previous match used in the next match
+				ISSUE: not resetting the data inbetween matches
+				SOLUTION: create new data for next match after saving
+
+			BUG: without telling it so directly in InitTab, no team numbers are loaded for the matches
+				ISSUE: ?
+				SOLUTION: ?
+
+			PROJECT: tell the maxMatches to stop not at 200 but at however many matches were in the matches.txt file
+
+	VERSION 1.0.1
+
+		fixed data reuse bug
+
+		*fixed teamNumber loading bug
+
+		
+		
+
+		
+	
+		
+			
