@@ -1,0 +1,67 @@
+PAGfx Converter v0.10 -- by Mollusk -- resurrected by fincs -- forum.palib.info
+If you have suggestions, problems or anything please come to the PAlib forums
+
+Converting PAGfx.ini
+Transparent Color: Magenta
+
+37 sprites:
+  HybridTab: 256colors, 64x64, Pal: Tab_Pal, -> HybridTab_Sprite
+  TeleTab: 256colors, 64x64, Pal: Tab_Pal, -> TeleTab_Sprite
+  BridgeTab: 256colors, 64x64, Pal: Tab_Pal, -> BridgeTab_Sprite
+  EndTab: 256colors, 64x64, Pal: Tab_Pal, -> EndTab_Sprite
+  LwrBrdg: 256colors, 64x64, Pal: Type_Pal, -> LwrBrdg_Sprite
+  Other: 256colors, 64x64, Pal: Type_Pal, -> Other_Sprite
+  UsesKINECT: 256colors, 64x32, Pal: Title_Pal, -> UsesKINECT_Sprite
+  HasHybrid: 256colors, 64x32, Pal: Title_Pal, -> HasHybrid_Sprite
+  HybAssist: 256colors, 64x64, Pal: Type_Pal, -> HybAssist_Sprite
+  Top: 256colors, 64x32, Pal: Title_Pal, -> Top_Sprite
+  Low: 256colors, 64x32, Pal: Title_Pal, -> Low_Sprite
+  Mid: 256colors, 64x32, Pal: Title_Pal, -> Mid_Sprite
+  TravelAcrossBar: 256colors, 64x32, Pal: Title_Pal, -> TravelAcrossBar_Sprite
+  BALLS: 256colors, 64x32, Pal: Title_Pal, -> BALLS_Sprite
+  CanLowerBridge: 256colors, 64x32, Pal: Title_Pal, -> CanLowerBridge_Sprite
+  Disabled: 256colors, 64x32, Pal: Title_Pal, -> Disabled_Sprite
+  Three: 256colors, 64x64, Pal: Type_Pal, -> Three_Sprite
+  Two: 256colors, 64x64, Pal: Type_Pal, -> Two_Sprite
+  AttBal: 256colors, 64x64, Pal: Type_Pal, -> AttBal_Sprite
+  AttBalCO: 256colors, 64x64, Pal: Type_Pal, -> AttBalCO_Sprite
+  Balanc: 256colors, 64x64, Pal: Type_Pal, -> Balanc_Sprite
+  BalanCO: 256colors, 64x64, Pal: Type_Pal, -> BalanCO_Sprite
+  none: 256colors, 64x64, Pal: Type_Pal, -> none_Sprite
+  One: 256colors, 64x64, Pal: Type_Pal, -> One_Sprite
+  Assist: 256colors, 64x32, Pal: Title_Pal, -> Assist_Sprite
+  Defensive: 256colors, 64x32, Pal: Title_Pal, -> Defensive_Sprite
+  Finish: 256colors, 64x32, Pal: Type_Pal, -> Finish_Sprite
+  red_penalty: 256colors, 64x64, Pal: Type_Pal, -> red_penalty_Sprite
+  Regular: 256colors, 64x32, Pal: Title_Pal, -> Regular_Sprite
+  Technical: 256colors, 64x32, Pal: Title_Pal, -> Technical_Sprite
+  yellow_penalty: 256colors, 64x64, Pal: Type_Pal, -> yellow_penalty_Sprite
+  RedBlue: 256colors, 64x64, Pal: Type_Pal, -> RedBlue_Sprite
+  CheckBox: 256colors, 16x32, Pal: CheckBox_Pal, -> CheckBox_Sprite
+  Number: 256colors, 16x320, Pal: Number_Pal, -> Number_Sprite
+  BlankType: 256colors, 64x32, Pal: Type_Pal, -> BlankType_Sprite
+  BlankTitle: 256colors, 64x32, Pal: Title_Pal, -> BlankTitle_Sprite
+  BlankTab: 256colors, 64x32, Pal: Tab_Pal, -> BlankTab_Sprite
+
+5 backgrounds:
+  BGBridge : EasyBg, 256x192, Pal: BGBridge_Pal, 113 tiles -> BGBridge_Tiles and BGBridge_Map
+  BGEnd : EasyBg, 256x192, Pal: BGEnd_Pal, 119 tiles -> BGEnd_Tiles and BGEnd_Map
+  BGHybrid : EasyBg, 256x192, Pal: BGHybrid_Pal, 128 tiles -> BGHybrid_Tiles and BGHybrid_Map
+  BGTele : EasyBg, 256x192, Pal: BGTele_Pal, 148 tiles -> BGTele_Tiles and BGTele_Map
+  BGBlank : EasyBg, 256x192, Pal: BGBlank_Pal, 1 tiles -> BGBlank_Tiles and BGBlank_Map
+
+10 palettes:
+  Tab_Pal, 27 colors
+  Type_Pal, 7 colors
+  Title_Pal, 2 colors
+  CheckBox_Pal, 4 colors
+  Number_Pal, 2 colors
+  BGBridge_Pal, 13 colors
+  BGEnd_Pal, 13 colors
+  BGHybrid_Pal, 12 colors
+  BGTele_Pal, 13 colors
+  BGBlank_Pal, 1 colors
+
+Converted in 0 minutes and 0 seconds
+
+Finished!
