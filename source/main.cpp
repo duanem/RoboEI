@@ -170,7 +170,7 @@ void Loadrobotpic(int robotnum)
 void writeInfo(MatchData* MatchInfo)
 {
 	FILE* dataFile = fopen("data.txt", "ab");
-	fprintf(dataFile, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\r\n",
+	fprintf(dataFile, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\r\n",
 	
 	MatchInfo->InitInfo.MatchNum,
 	MatchInfo->InitInfo.TeamNum,
@@ -185,7 +185,6 @@ void writeInfo(MatchData* MatchInfo)
 	MatchInfo->GameInfo.HydInfo.MidP,
 	MatchInfo->GameInfo.HydInfo.LowP,
 	
-	MatchInfo->GameInfo.TeleInfo.Disabled,
 	MatchInfo->GameInfo.TeleInfo.DisabledCounter,
 	MatchInfo->GameInfo.TeleInfo.Bridge,
 	MatchInfo->GameInfo.TeleInfo.Bar,

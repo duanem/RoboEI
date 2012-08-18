@@ -36,13 +36,13 @@ void EndTabController::handleKey()
 		Technical->inc_mFrame();
 	}
 	
-	if(Pad.Held.L && Pad.Newpress.B)
+	if(Pad.Held.L && Pad.Newpress.A)
 	{
 		Regular->dec_mFrame();
 		if(Regular->get_mFrame() < 0)
 			Regular->set_mFrame(0);
 	}
-	else if(Pad.Newpress.B)
+	else if(Pad.Newpress.A)
 	{
 		Regular->inc_mFrame();
 	}

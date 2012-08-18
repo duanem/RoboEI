@@ -56,4 +56,9 @@ private:
 
 Tab* initTeleTab();
 
+namespace nsTT
+{
+	bool wasTouched(CheckBox* cb);
+}
+
 #endif

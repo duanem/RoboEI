@@ -26,7 +26,7 @@ TeleTabController::~TeleTabController()
 
 void TeleTabController::handleKey()
 {
-	if(Disabled->get_mFrame() == false)
+	if(!Disabled->get_mFrame())
 	{
 		LowerBridge->enable();
 		TravelBar->enable();
@@ -78,6 +78,13 @@ void TeleTabController::handleKey()
 	{
 		LowerBridge->disable();
 		TravelBar->disable();
+	}
+	
+	// check if the Disabled checkbox was newly changed to true, and increase the Disabled Counter if so
+	if(Stylus.Released && nsTT::wasTouched(Disabled))
+	{
+		if(Disabled->get_mFrame())
+			++DisabledCounter;
 	}
 	
 	if (mSuperController)
@@ -183,4 +190,12 @@ Tab* initTeleTab()
 				Controllers::teleTabController->set_LScore(LowScoreTele);
 
 	return TeleTab;
+}
+
+namespace nsTT
+{
+	bool wasTouched(CheckBox* cb)
+	{
+		return (PA_SpriteStylusOver(cb->get_mSpriteNum()) && cb->get_mScreen() == kBottomScreen);
+	}
 }
