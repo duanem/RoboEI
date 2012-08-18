@@ -34,22 +34,17 @@ const char* kCurMatchFilename = "savedmatch.txt";
 
 // globals
 struct MATCH MatchList [kMaxMatches];
-int dsnumber = 0;
-int maxMatches = 0;
-
-MatchData MatchInfo;
-
-bool matchnotfinished = false;
 
 int main()
 {
-
+	//int maxMatches;
 	PA_Init();
 	PA_InitVBL();
 	fatInitDefault();
 	
-	maxMatches = Loadmatches();
+	int maxMatches = Loadmatches();
 	printf("after Loadmatches();\n");
+	MatchData MatchInfo;
 	
 	View Rebound;
 	
@@ -59,6 +54,12 @@ int main()
 	while(true)
 	{
 		loadMatch(MatchInfo);
+		
+		if(readMatch() > maxMatches)
+		{
+			MatchInfo.InitInfo.MatchNum = 1;
+			writeMatch(1);
+		}
 		
 		Rebound.show();
 		
@@ -72,9 +73,8 @@ int main()
 		}
 		
 		saveMatch(&MatchInfo);
-		writeInfo();
-		++MatchInfo.InitInfo.MatchNum;
-		writeMatch(MatchInfo.InitInfo.MatchNum);
+		writeInfo(&MatchInfo);
+		writeMatch(MatchInfo.InitInfo.MatchNum+1);
 		MatchInfo = MatchData();
 		
 		Rebound.hide();
@@ -101,19 +101,15 @@ int Loadmatches()
 			&MatchList[i].RobotNo[4],
 			&MatchList[i].RobotNo[5]);
 			
+			if(result == EOF || !result)
+				break;
+			
 			++i;
 		}
 	}
 	else			// cant load data
-		PA_Print(kTopScreen, "Unable to load data");
+		printf("Unable to load data");
 	
-	fclose(testRead);
-	
-	testRead = fopen(kDSFilename, "rb");	// "rb" = read
-	if(testRead)
-	{
-		result = fscanf(testRead, "%d\n\r", &dsnumber);
-	}
 	fclose(testRead);
 	
 	return i - 1;
@@ -171,40 +167,42 @@ void Loadrobotpic(int robotnum)
 	}
 }
 
-void writeInfo()
+void writeInfo(MatchData* MatchInfo)
 {
 	FILE* dataFile = fopen("data.txt", "ab");
-	fprintf(dataFile, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\r\n",
+	fprintf(dataFile, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\r\n",
 	
-	MatchInfo.InitInfo.MatchNum,
-	MatchInfo.InitInfo.TeamNum,
-	MatchInfo.InitInfo.AllianceColor,
+	MatchInfo->InitInfo.MatchNum,
+	MatchInfo->InitInfo.TeamNum,
+	MatchInfo->InitInfo.AllianceColor,
 	
-	MatchInfo.GameInfo.HydInfo.HasHybrid,
-	MatchInfo.GameInfo.HydInfo.UsesKINECT,
-	MatchInfo.GameInfo.HydInfo.ScoreType,
-	MatchInfo.GameInfo.HydInfo.TopP,
-	MatchInfo.GameInfo.HydInfo.MidP,
-	MatchInfo.GameInfo.HydInfo.LowP,
+	MatchInfo->GameInfo.HydInfo.HasHybrid,
+	MatchInfo->GameInfo.HydInfo.UsesKINECT,
+	MatchInfo->GameInfo.HydInfo.LowerBridge,
+	MatchInfo->GameInfo.HydInfo.Assist,
+	MatchInfo->GameInfo.HydInfo.Other,
+	MatchInfo->GameInfo.HydInfo.TopP,
+	MatchInfo->GameInfo.HydInfo.MidP,
+	MatchInfo->GameInfo.HydInfo.LowP,
 	
-	MatchInfo.GameInfo.TeleInfo.Disabled,
-	MatchInfo.GameInfo.TeleInfo.DisabledCounter,
-	MatchInfo.GameInfo.TeleInfo.Bridge,
-	MatchInfo.GameInfo.TeleInfo.Bar,
-	MatchInfo.GameInfo.TeleInfo.BallsPU,
-	MatchInfo.GameInfo.TeleInfo.TopP,
-	MatchInfo.GameInfo.TeleInfo.MidP,
-	MatchInfo.GameInfo.TeleInfo.LowP,
+	MatchInfo->GameInfo.TeleInfo.Disabled,
+	MatchInfo->GameInfo.TeleInfo.DisabledCounter,
+	MatchInfo->GameInfo.TeleInfo.Bridge,
+	MatchInfo->GameInfo.TeleInfo.Bar,
+	MatchInfo->GameInfo.TeleInfo.BallsPU,
+	MatchInfo->GameInfo.TeleInfo.TopP,
+	MatchInfo->GameInfo.TeleInfo.MidP,
+	MatchInfo->GameInfo.TeleInfo.LowP,
 	
-	MatchInfo.GameInfo.BrdgInfo.BalanceType,
-	MatchInfo.GameInfo.BrdgInfo.BalanceAmount,
+	MatchInfo->GameInfo.BrdgInfo.BalanceType,
+	MatchInfo->GameInfo.BrdgInfo.BalanceAmount,
 	
-	MatchInfo.GameInfo.EndInfo.Defensive,
-	MatchInfo.GameInfo.EndInfo.Assist,
-	MatchInfo.GameInfo.EndInfo.Technical,
-	MatchInfo.GameInfo.EndInfo.Regular,
-	MatchInfo.GameInfo.EndInfo.YellowPenalty,
-	MatchInfo.GameInfo.EndInfo.RedPenalty);
+	MatchInfo->GameInfo.EndInfo.Defensive,
+	MatchInfo->GameInfo.EndInfo.Assist,
+	MatchInfo->GameInfo.EndInfo.Technical,
+	MatchInfo->GameInfo.EndInfo.Regular,
+	MatchInfo->GameInfo.EndInfo.YellowPenalty,
+	MatchInfo->GameInfo.EndInfo.RedPenalty);
 	
 	fclose(dataFile);
 }

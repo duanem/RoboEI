@@ -29,7 +29,11 @@ public:
 	
 	void set_UsesKINECT(CheckBox* cb);
 	
-	void set_ScoreType(RBGroup* rbg);
+	void set_LowerBridge(SpecialBox* sb);
+	
+	void set_Assist(SpecialBox* sb);
+	
+	void set_Other(SpecialBox* sb);
 	
 	void set_TScore(NumberSprite* ns);
 	
@@ -44,7 +48,9 @@ private:
 	CheckBox* HasHybrid;
 	CheckBox* UsesKINECT;
 	
-	RBGroup* ScoreType;
+	SpecialBox* LowerBridge;
+	SpecialBox* Assist;
+	SpecialBox* Other;
 	
 	NumberSprite* TScore;
 	NumberSprite* MScore;

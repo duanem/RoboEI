@@ -63,8 +63,10 @@ void HydTabController::handleKey()
 		
 	if(HasHybrid->get_mFrame() == false)
 	{
-		ScoreType->disable();
 		UsesKINECT->set_mFrame(false);
+		LowerBridge->set_mFrame(false);
+		Assist->set_mFrame(false);
+		Other->set_mFrame(false);
 		TScore->set_mFrame(0);
 		MScore->set_mFrame(0);
 		LScore->set_mFrame(0);
@@ -78,7 +80,9 @@ void HydTabController::loadData(const HydData& HydInfo)
 {
 	HasHybrid->set_mFrame(HydInfo.HasHybrid);
 	UsesKINECT->set_mFrame(HydInfo.UsesKINECT);
-	ScoreType->set_CurRB(HydInfo.ScoreType);
+	LowerBridge->set_mFrame(HydInfo.LowerBridge);
+	Assist->set_mFrame(HydInfo.Assist);
+	Other->set_mFrame(HydInfo.Other);
 	TScore->set_mFrame(HydInfo.TopP);
 	MScore->set_mFrame(HydInfo.MidP);
 	LScore->set_mFrame(HydInfo.LowP);
@@ -88,7 +92,9 @@ void HydTabController::saveData(HydData* HydInfo)
 {
 	HydInfo->HasHybrid = HasHybrid->get_mFrame();
 	HydInfo->UsesKINECT = UsesKINECT->get_mFrame();
-	HydInfo->ScoreType = ScoreType->get_CurRB();
+	HydInfo->LowerBridge = LowerBridge->get_mFrame();
+	HydInfo->Assist = Assist->get_mFrame();
+	HydInfo->Other = Other->get_mFrame();
 	HydInfo->TopP = TScore->get_mFrame();
 	HydInfo->MidP = MScore->get_mFrame();
 	HydInfo->LowP = LScore->get_mFrame();
@@ -104,9 +110,19 @@ void HydTabController::set_UsesKINECT(CheckBox* cb)
 	UsesKINECT = cb;
 }
 
-void HydTabController::set_ScoreType(RBGroup* rbg)
+void HydTabController::set_LowerBridge(SpecialBox* sb)
 {
-	ScoreType = rbg;
+	LowerBridge = sb;
+}
+
+void HydTabController::set_Assist(SpecialBox* sb)
+{
+	Assist = sb;
+}
+
+void HydTabController::set_Other(SpecialBox* sb)
+{
+	Other = sb;
 }
 
 void HydTabController::set_TScore(NumberSprite* ns)
@@ -139,19 +155,19 @@ Tab* initHydTab()
 			HydTab->add(UsesKINECT);
 				Controllers::hydTabController->set_UsesKINECT(UsesKINECT);
 		
-		// radiobuttons (Score Type)
-		RBGroup* ScoreType = new RBGroup;
+		// special boxes (score type)
 		
-		RadioButton* LowerBridge = new RadioButton(kBottomScreen, 32, 64, LwrBrdg_Sprite);
-		RadioButton* HybridAssist = new RadioButton(kBottomScreen, 96, 64, HybAssist_Sprite);
-		RadioButton* Other = new RadioButton(kBottomScreen, 160, 64, Other_Sprite);
+		SpecialBox* LowerBridge = new SpecialBox(kBottomScreen, 32, 64, LwrBrdg_Sprite);
+		SpecialBox* HybridAssist = new SpecialBox(kBottomScreen, 96, 64, HybAssist_Sprite);
+		SpecialBox* Other = new SpecialBox(kBottomScreen, 160, 64, Other_Sprite);
 		
-		ScoreType->add(LowerBridge);
-		ScoreType->add(HybridAssist);
-		ScoreType->add(Other);
-		
-			HydTab->add(ScoreType);
-				Controllers::hydTabController->set_ScoreType(ScoreType);
+			HydTab->add(LowerBridge);
+			HydTab->add(HybridAssist);
+			HydTab->add(Other);
+			
+				Controllers::hydTabController->set_LowerBridge(LowerBridge);
+				Controllers::hydTabController->set_Assist(HybridAssist);
+				Controllers::hydTabController->set_Other(Other);
 		
 		// number_sprites (Score Locations)
 		NumberSprite* TopScore = new NumberSprite(kBottomScreen, 140, 106, Top_Sprite);

@@ -40,7 +40,7 @@ void InitTabController::loadData(const InitData& InitInfo)
 {	
 	DSNum->set_mFrame(InitInfo.DSNum);
 	MatchNum->set_mFrame(InitInfo.MatchNum);	
-	TeamNum->set_mFrame/*(InitInfo.TeamNum);*/(MatchList[MatchNum->get_mFrame()-1].RobotNo[DSNum->get_mFrame()-1]);
+	TeamNum->set_mFrame(InitInfo.TeamNum);//(MatchList[MatchNum->get_mFrame()-1].RobotNo[DSNum->get_mFrame()-1]);
 	
 	for(std::vector<SpecialBox*>::iterator acbIter = AllianceColorBar.begin(); acbIter != AllianceColorBar.end(); ++acbIter)
 	{

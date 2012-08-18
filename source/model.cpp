@@ -4,17 +4,13 @@
 #include "model.h"
 
 extern struct MATCH MatchList[kMaxMatches];
-extern int maxMatches;
 
 InitData::InitData()
 : DSNum(readDS())
 , MatchNum(readMatch())
-, AllianceColor(0)
+, TeamNum(MatchList[MatchNum-1].RobotNo[DSNum-1])
+, AllianceColor(DSNum < 4 && DSNum > 0 ? kRedAlliance : kBlueAlliance)
 {
-	Loadmatches();
-	if(MatchNum > maxMatches)
-		MatchNum = 1;
-	TeamNum = MatchList[MatchNum-1].RobotNo[DSNum-1];
 }
 
 InitData::~InitData()
@@ -24,7 +20,9 @@ InitData::~InitData()
 HydData::HydData()
 : HasHybrid(false)
 , UsesKINECT(false)
-, ScoreType(-1)
+, LowerBridge(false)
+, Assist(false)
+, Other(false)
 , TopP(0)
 , MidP(0)
 , LowP(0)
@@ -78,10 +76,6 @@ EndData::~EndData()
 
 GameData::GameData()
 {
-	HydData HydInfo;
-	TeleData TeleInfo;
-	BrdgData BrdgInfo;
-	EndData EndInfo;
 }
 
 GameData::~GameData()
@@ -90,8 +84,6 @@ GameData::~GameData()
 
 MatchData::MatchData()
 {
-	InitData InitInfo;
-	GameData GameInfo;
 }
 
 MatchData::~MatchData()

@@ -23,7 +23,9 @@ struct HydData
 	
 	bool HasHybrid;
 	bool UsesKINECT;
-	int ScoreType;
+	bool LowerBridge;
+	bool Assist;
+	bool Other;
 	int TopP;
 	int MidP;
 	int LowP;

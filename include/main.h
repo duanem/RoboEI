@@ -15,10 +15,16 @@ struct MATCH
 	int RobotNo[6];
 };
 
+enum
+{
+	kRedAlliance = 0,
+	kBlueAlliance = 1
+};
+
 // functions
 int Loadmatches(void);
 void Loadrobotpic(int robotnum);
-void writeInfo();
+void writeInfo(MatchData* MatchInfo);
 void loadMatch(const MatchData& MatchToLoad);
 void saveMatch(MatchData* MatchToSave);
 int readMatch();

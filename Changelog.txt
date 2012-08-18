@@ -258,7 +258,22 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 		*fixed teamNumber loading bug
 
-		
+		KNOWN BUGS/PROJECTS:
+			BUG: number sprites do not reset to 1 digit after being set to 0
+				ISSUE: in draw() of number sprite
+				SOLUTION: told it to add digit if there are none, resets to just one 0 being displayed
+
+	VERSION 1.0.2
+
+		fixed teamNumber loading bug
+
+		fixed alliance color loading (missing)
+
+		fixed number sprite bug
+
+		fixed MatchNumber loading bug
+
+		reset max matches to be equal to number of matches in the matches.txt file
 		
 
 		
