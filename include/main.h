@@ -30,6 +30,7 @@ void saveMatch(MatchData* MatchToSave);
 int readMatch();
 void writeMatch(int matchNum);
 int readDS();
+bool switchMatch(int referenceMatch);
 
 
 #endif

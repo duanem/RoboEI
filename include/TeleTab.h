@@ -38,6 +38,8 @@ public:
 	
 	void set_LScore(NumberSprite* ns);
 	
+	void set_DisabledCounter(NumberSprite* ns);
+	
 private:
 
 	Controller* mSuperController;
@@ -51,7 +53,7 @@ private:
 	NumberSprite* MScore;
 	NumberSprite* LScore;
 	
-	int DisabledCounter;
+	NumberSprite* DisabledCounter;
 };
 
 Tab* initTeleTab();

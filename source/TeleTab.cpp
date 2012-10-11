@@ -72,7 +72,7 @@ void TeleTabController::handleKey()
 		else if(Pad.Newpress.B)
 		{
 			LScore->inc_mFrame();
-		}		
+		}
 	}
 	else
 	{
@@ -80,11 +80,14 @@ void TeleTabController::handleKey()
 		TravelBar->disable();
 	}
 	
-	// check if the Disabled checkbox was newly changed to true, and increase the Disabled Counter if so
+	// handle the Disabled Counter
 	if(Stylus.Released && nsTT::wasTouched(Disabled))
 	{
+		PA_WaitForVBL();
 		if(Disabled->get_mFrame())
-			++DisabledCounter;
+			DisabledCounter->inc_mFrame();	
+		if(Pad.Held.L && DisabledCounter->get_mFrame() > 0)
+			DisabledCounter->dec_mFrame();
 	}
 	
 	if (mSuperController)
@@ -94,7 +97,7 @@ void TeleTabController::handleKey()
 void TeleTabController::loadData(const TeleData& TeleInfo)
 {
 	Disabled->set_mFrame(TeleInfo.Disabled);
-	DisabledCounter = TeleInfo.DisabledCounter;
+	DisabledCounter->set_mFrame(TeleInfo.DisabledCounter);
 	LowerBridge->set_mFrame(TeleInfo.Bridge);
 	TravelBar->set_mFrame(TeleInfo.Bar);
 	BallsPU->set_mFrame(TeleInfo.BallsPU);
@@ -106,7 +109,7 @@ void TeleTabController::loadData(const TeleData& TeleInfo)
 void TeleTabController::saveData(TeleData* TeleInfo)
 {
 	TeleInfo->Disabled = Disabled->get_mFrame();
-	TeleInfo->DisabledCounter = DisabledCounter;
+	TeleInfo->DisabledCounter = DisabledCounter->get_mFrame();
 	TeleInfo->Bridge = LowerBridge->get_mFrame();
 	TeleInfo->Bar = TravelBar->get_mFrame();
 	TeleInfo->BallsPU = BallsPU->get_mFrame();
@@ -150,13 +153,18 @@ void TeleTabController::set_LScore(NumberSprite* ns)
 	LScore = ns;
 }
 
+void TeleTabController::set_DisabledCounter(NumberSprite* ns)
+{
+	DisabledCounter = ns;
+}
+
 
 Tab* initTeleTab()
 {	
 	Tab* TeleTab = new Tab(kBottomScreen, 64, 0, TeleTab_Sprite, &BGTele, Controllers::teleTabController);
 	
 		// checkboxes (If Occured)
-		CheckBox* Disabled = new CheckBox(kBottomScreen, 157, 44, Disabled_Sprite);
+		CheckBox* Disabled = new CheckBox(kBottomScreen, 137, 44, Disabled_Sprite);
 		
 			TeleTab->add(Disabled);
 				Controllers::teleTabController->set_Disabled(Disabled);
@@ -188,6 +196,12 @@ Tab* initTeleTab()
 			
 			TeleTab->add(LowScoreTele);
 				Controllers::teleTabController->set_LScore(LowScoreTele);
+		
+		// disabled counter display
+		NumberSprite* DisabledCounter = new NumberSprite(kBottomScreen, 170, 36, BlankTitle_Sprite);
+			
+			TeleTab->add(DisabledCounter);
+				Controllers::teleTabController->set_DisabledCounter(DisabledCounter);
 
 	return TeleTab;
 }
@@ -196,6 +210,6 @@ namespace nsTT
 {
 	bool wasTouched(CheckBox* cb)
 	{
-		return (PA_SpriteStylusOver(cb->get_mSpriteNum()) && cb->get_mScreen() == kBottomScreen);
+		return ((PA_SpriteStylusOver(cb->get_mSpriteNum())||PA_SpriteStylusOver(cb->get_mTitleSpriteNum()))&& cb->get_mScreen() == kBottomScreen);
 	}
 }

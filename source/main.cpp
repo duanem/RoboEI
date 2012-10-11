@@ -33,7 +33,7 @@ const char* kDSFilename = "DS.txt";
 const char* kCurMatchFilename = "savedmatch.txt";
 
 // globals
-struct MATCH MatchList [kMaxMatches];
+struct MATCH MatchList[kMaxMatches];
 
 int main()
 {
@@ -42,6 +42,7 @@ int main()
 	PA_InitVBL();
 	fatInitDefault();
 	
+	int curMatch = 1;
 	int maxMatches = Loadmatches();
 	printf("after Loadmatches();\n");
 	MatchData MatchInfo;
@@ -53,6 +54,8 @@ int main()
 
 	while(true)
 	{
+		Rebound.show();
+		
 		loadMatch(MatchInfo);
 		
 		if(readMatch() > maxMatches)
@@ -61,9 +64,11 @@ int main()
 			writeMatch(1);
 		}
 		
-		Rebound.show();
+		curMatch = readMatch();
 		
-		while(!endMatch())
+		//Rebound.show();
+		
+		while(!endMatch() && !switchMatch(curMatch))
 		{
 			Rebound.handle();
 			Rebound.draw();
@@ -72,12 +77,17 @@ int main()
 			PA_WaitForVBL();
 		}
 		
-		saveMatch(&MatchInfo);
-		writeInfo(&MatchInfo);
-		writeMatch(MatchInfo.InitInfo.MatchNum+1);
-		MatchInfo = MatchData();
+		if(endMatch())
+		{
+			saveMatch(&MatchInfo);
+			writeInfo(&MatchInfo);
+			writeMatch(MatchInfo.InitInfo.MatchNum+1);
+		}
 		
+		MatchInfo = MatchData();
 		Rebound.hide();
+		
+		PA_WaitForVBL();
 	}
 }
 
@@ -272,4 +282,9 @@ int readDS()
 	}
 	fclose(f);
 	return dsnumber;
+}
+
+bool switchMatch(int referenceMatch)
+{
+	return (readMatch() != referenceMatch);
 }

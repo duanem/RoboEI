@@ -17,8 +17,6 @@
 
 #include <vector>
 
-extern struct MATCH MatchList[kMaxMatches];
-
 InitTabController::InitTabController(Controller* superController)
 : Controller(superController)
 , AllianceColor(false)
@@ -32,6 +30,20 @@ InitTabController::~InitTabController()
 
 void InitTabController::handleKey()
 {
+	if(Pad.Held.L && Pad.Held.R)
+	{
+		if(Pad.Newpress.Start && MatchNum->get_mFrame() < kMaxMatches) 					// dont increase above match 200
+		{
+			MatchNum->inc_mFrame();
+			writeMatch(MatchNum->get_mFrame());
+		}
+		else if(Pad.Newpress.Select && MatchNum->get_mFrame() > 1) 						// dont decrease below match 1
+		{
+			MatchNum->dec_mFrame();
+			writeMatch(MatchNum->get_mFrame());
+		}
+	}
+			
 	if (mSuperController)
 		mSuperController->handleKey();
 }
@@ -40,7 +52,7 @@ void InitTabController::loadData(const InitData& InitInfo)
 {	
 	DSNum->set_mFrame(InitInfo.DSNum);
 	MatchNum->set_mFrame(InitInfo.MatchNum);	
-	TeamNum->set_mFrame(InitInfo.TeamNum);//(MatchList[MatchNum->get_mFrame()-1].RobotNo[DSNum->get_mFrame()-1]);
+	TeamNum->set_mFrame(InitInfo.TeamNum);
 	
 	for(std::vector<SpecialBox*>::iterator acbIter = AllianceColorBar.begin(); acbIter != AllianceColorBar.end(); ++acbIter)
 	{
