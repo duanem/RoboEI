@@ -9,7 +9,7 @@
 // constants
 const int kMaxMatches = 200;
 
-struct MATCH
+struct TeamList
 {
 	int MatchNo;
 	int RobotNo[6];

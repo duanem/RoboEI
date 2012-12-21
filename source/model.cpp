@@ -3,7 +3,7 @@
 #include "main.h"
 #include "model.h"
 
-extern struct MATCH MatchList[kMaxMatches];
+extern struct TeamList MatchList[kMaxMatches];
 
 InitData::InitData()
 : DSNum(readDS())
