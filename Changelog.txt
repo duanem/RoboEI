@@ -23,15 +23,15 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 0.7.0 - FIRST VERSION - VIEW
 
-		Full Support for displaying sprites (based off objects View, Control, CheckBox, 
-		on bottom screen		     NumberSprite, RadioButton, RB_Group, Tab, 
+		+Full Support for displaying sprites (based off objects View, Control, CheckBox, 
+		 on bottom screen		     NumberSprite, RadioButton, RB_Group, Tab, 
 						     and Tab_Group)
 
-		I-Stream for Button Presses
+		+I-Stream for Button Presses
 
-		Set_Value Supported for NumberSprite objects
+		+Set_Value Supported for NumberSprite objects
 
-		Screen based Coordinates (based off position 0, 0 in upper left)
+		+Screen based Coordinates (based off position 0, 0 in upper left)
 
 		KNOWN BUGS/PROJECTS:
 			BUG: Cannot set value for radio button, tab, or checkbox objects
@@ -40,7 +40,7 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 0.7.1
 		
-		Set_Value Supported for all objects
+		+Set_Value Supported for all objects
 
 		KNOWN BUGS/PROJECTS:
 			PROJECT: display views on both screens
@@ -49,9 +49,9 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 0.7.2
 
-		Full Support for displaying all Views on both screens
+		+Full Support for displaying all Views on both screens
 
-		Load Robot Pic added in main.h
+		+Load Robot Pic added in main.h
 
 		KNOWN BUGS/PROJECTS:
 			BUG: Sprites on Top Screen Only Display in Black
@@ -66,7 +66,7 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 0.7.3
 
-		Top Screen Pallets loaded and supported and tabs on top screen are now displayed
+		+Top Screen Pallets loaded and supported and tabs on top screen are now displayed
 
 		KNOWN BUGS/PROJECTS:
 			BUG: TabGroups on top screen scroll with left and right keys as well
@@ -83,7 +83,7 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 0.7.4
 
-		TabGroups have custom key_presses, and rewrite of TabGroups wrapping to support TabGroups of all sizes
+		+TabGroups have custom key_presses, and rewrite of TabGroups wrapping to support TabGroups of all sizes
 
 		KNOWN BUGS/PROJECTS:
 			BUG: HydTab on top screen is glitching and displaying parts of a checkbox from teleTab on top screen
@@ -93,7 +93,7 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 0.7.5
 
-		fixed an issue where checkbox titles where initilized from the wrong sprite number pool
+		=fixed an issue where checkbox titles where initilized from the wrong sprite number pool
 
 		KNOWN BUGS/PROJECTS:
 			BUG: Presses on bottom screen changing sprites on top screens 
@@ -110,11 +110,11 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 		
 	VERSION 0.7.6
 	
-		cleaned up code a bit - lots of comments in header files, organizing complete
+		+cleaned up code a bit - lots of comments in header files, organizing complete
 		
-		fixed an issue where presses on the bottom screen were changing sprites on the top screen
+		=fixed an issue where presses on the bottom screen were changing sprites on the top screen
 		
-		fixed an issue where NumberSprites were being changed by keys with no key set
+		=fixed an issue where NumberSprites were being changed by keys with no key set
 		
 		KNOWN BUGS/PROJECTS:
 			BUG: Sprite Numbers run out when using NumberSprite objects for a long time
@@ -129,9 +129,9 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 				
 	VERSION 0.7.7
 	
-		fixed an issue where sprite numbers where running out due to calls from NumberSprite::add_digit()
+		=fixed an issue where sprite numbers where running out due to calls from NumberSprite::add_digit()
 		
-		fixed an issue where NumberSprite objects where lagging when set to large values pre_shown
+		=fixed an issue where NumberSprite objects where lagging when set to large values pre_shown
 		
 		KNOWN BUGS/PROJECTS:
 			BUG: Robot Picture not displaying to screen (shouldve been found a long time ago)
@@ -140,7 +140,7 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 				
 	VERSION 0.7.8
 	
-		fixed an issue where pictures (.gif images) where not displaying to the screen
+		=fixed an issue where pictures (.gif images) where not displaying to the screen
 		
 		KNOWN BUGS/PROJECTS:
 			PROJECT: seperate keys from view objects
@@ -151,11 +151,13 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 		
 		REDUX OVERHAUL!
 		
-			Init MVC style code -> Views are seperate from the keys controlling them
+			+Init MVC style code -> Views are seperate from the keys controlling them
+
+			-I-stream for buttons, no longer needed, using a controller style handler for button presses
 			
-			Controller class + subclasses added -> handles key presses for tabs and tab groups
+			+Controller class + subclasses added -> handles key presses for tabs and tab groups
 			
-			Reorganized files, The game for each year is now completely seperate from the AF
+			+Reorganized files, The game for each year is now completely seperate from the AF
 			
 		KNOWN BUGS/PROJECTS:
 			BUG: Screen does not display at all
@@ -166,7 +168,7 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 				
 	VERSION 0.8.1 
 			
-		fixed bug where call of NULL function created hitch in program
+		=fixed bug where call of NULL function created hitch in program
 		
 		KNOWN BUGS/PROJECTS:
 			PROJECT: recreate the 2012 game
@@ -181,11 +183,11 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 				
 	VERSION 0.8.2
 	
-		fixed bugs of previous version
+		=fixed bugs of previous version
 		
-		finished recreating the look and behavior of the Bottom Screen for Rebound Rumble
+		+finished recreating the look and behavior of the Bottom Screen for Rebound Rumble
 		
-		created SpecialBox -> subclass CheckBox that works like a CheckBox but looks different
+		+created SpecialBox -> subclass CheckBox that works like a CheckBox but looks different
 		
 		KNOWN BUGS/PROJECTS:
 			PROJECT: create the model (data)
@@ -196,22 +198,22 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 				
 	VERSION 0.8.3
 	
-		fixed bug of nopic image not displaying (after 3 years of attempts)
+		=fixed bug of nopic image not displaying (after 3 years of attempts)
 		
 		KNOWN BUGS/PROJECTS:
 			PROJECT: model!
 			
 	VERSION 0.8.4
 	
-		added top screen init tab 
+		+added top screen init tab 
 			
 	VERSION 0.9.0 - ALMOST THERE! - MODEL
 
-		model.h file -> includes all information for saving data from each tab
+		+model.h file -> includes all information for saving data from each tab
 
-		controllers now read in a data struct (for corresponding model) and both save and load data to and from that struct
+		+controllers now read in a data struct (for corresponding model) and both save and load data to and from that struct
 
-		functions implement creation of views
+		+functions implement creation of views
 
 		KNOWN BUGS/PROJECTS:
 			BUG: no display to screen
@@ -222,7 +224,7 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 0.9.1
 	
-		fixed issue with nothing displaying to the screen
+		=fixed issue with nothing displaying to the screen
 		
 		KNOWN BUGS/PROJECTS:
 			BUG: contents of tabs do not display to the screen
@@ -235,11 +237,11 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 1.0.0
 
-		implemented match system
+		+implemented match system
 
-		data saving and loading
+		+data saving and loading
 
-		full support for competition
+		+full support for competition
 
 		KNOWN BUGS/PROJECTS:
 			BUG: data from previous match used in the next match
@@ -254,7 +256,7 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 1.0.1
 
-		fixed data reuse bug
+		=fixed data reuse bug
 
 		*fixed teamNumber loading bug
 
@@ -265,15 +267,25 @@ CHANGELOG FOR RAGUNA ESPIONAGE INTERFACE
 
 	VERSION 1.0.2
 
-		fixed teamNumber loading bug
+		=fixed teamNumber loading bug
 
-		fixed alliance color loading (missing)
+		=fixed alliance color loading (missing)
 
-		fixed number sprite bug
+		=fixed number sprite bug
 
-		fixed MatchNumber loading bug
+		=fixed MatchNumber loading bug
 
-		reset max matches to be equal to number of matches in the matches.txt file
+		+reset max matches to be equal to number of matches in the matches.txt file
+
+		PROJECT: make the disabled counter visable on the screen
+
+		PROJECT: allow changing between matches
+
+	VERSION 1.0.3
+
+		+made disabled counter visable on screen
+
+		+allowed changing between matches
 		
 
 		
