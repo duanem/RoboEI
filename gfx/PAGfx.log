@@ -38,10 +38,10 @@ Transparent Color: Magenta
   yellow_penalty: 256colors, 64x64, Pal: Type_Pal, -> yellow_penalty_Sprite
   RedBlue: 256colors, 64x64, Pal: Type_Pal, -> RedBlue_Sprite
   CheckBox: 256colors, 16x32, Pal: CheckBox_Pal, -> CheckBox_Sprite
-  Number: 256colors, 16x320, Pal: Number_Pal, -> Number_Sprite
   BlankType: 256colors, 64x32, Pal: Type_Pal, -> BlankType_Sprite
   BlankTitle: 256colors, 64x32, Pal: Title_Pal, -> BlankTitle_Sprite
   BlankTab: 256colors, 64x32, Pal: Tab_Pal, -> BlankTab_Sprite
+  Number: 256colors, 8x160, Pal: Number_Pal, -> Number_Sprite
 
 5 backgrounds:
   BGBridge : EasyBg, 256x192, Pal: BGBridge_Pal, 113 tiles -> BGBridge_Tiles and BGBridge_Map

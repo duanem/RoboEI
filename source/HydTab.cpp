@@ -170,9 +170,9 @@ Tab* initHydTab()
 				Controllers::hydTabController->set_Other(Other);
 		
 		// number_sprites (Score Locations)
-		NumberSprite* TopScore = new NumberSprite(kBottomScreen, 140, 106, Top_Sprite);
-		NumberSprite* MidScore = new NumberSprite(kBottomScreen, 140, 128, Mid_Sprite);
-		NumberSprite* LowScore = new NumberSprite(kBottomScreen, 140, 150, Low_Sprite);
+		NumberSprite* TopScore = new NumberSprite(kBottomScreen, 144, 114, Top_Sprite);
+		NumberSprite* MidScore = new NumberSprite(kBottomScreen, 144, 136, Mid_Sprite);
+		NumberSprite* LowScore = new NumberSprite(kBottomScreen, 144, 158, Low_Sprite);
 		
 			HydTab->add(TopScore);
 				Controllers::hydTabController->set_TScore(TopScore);

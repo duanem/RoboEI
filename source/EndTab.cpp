@@ -126,8 +126,8 @@ Tab* initEndTab()
 			EndTab->add(Assist);
 				Controllers::endTabController->set_Assist(Assist);
 		
-		NumberSprite* Technical = new NumberSprite(kBottomScreen, 220, 52, Technical_Sprite);
-		NumberSprite* Regular = new NumberSprite(kBottomScreen, 220, 84, Regular_Sprite);
+		NumberSprite* Technical = new NumberSprite(kBottomScreen, 224, 60, Technical_Sprite);
+		NumberSprite* Regular = new NumberSprite(kBottomScreen, 224, 92, Regular_Sprite);
 		
 			EndTab->add(Technical);
 				Controllers::endTabController->set_Technical(Technical);

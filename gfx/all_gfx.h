@@ -42,10 +42,10 @@ extern const unsigned char Technical_Sprite[2048] _GFX_ALIGN; // Palette: Title_
 extern const unsigned char yellow_penalty_Sprite[4096] _GFX_ALIGN; // Palette: Type_Pal
 extern const unsigned char RedBlue_Sprite[4096] _GFX_ALIGN; // Palette: Type_Pal
 extern const unsigned char CheckBox_Sprite[512] _GFX_ALIGN; // Palette: CheckBox_Pal
-extern const unsigned char Number_Sprite[5120] _GFX_ALIGN; // Palette: Number_Pal
 extern const unsigned char BlankType_Sprite[2048] _GFX_ALIGN; // Palette: Type_Pal
 extern const unsigned char BlankTitle_Sprite[2048] _GFX_ALIGN; // Palette: Title_Pal
 extern const unsigned char BlankTab_Sprite[2048] _GFX_ALIGN; // Palette: Tab_Pal
+extern const unsigned char Number_Sprite[1280] _GFX_ALIGN; // Palette: Number_Pal
 
 // Backgrounds:
 extern const PA_BgStruct BGBridge;

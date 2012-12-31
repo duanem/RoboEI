@@ -38,8 +38,8 @@ TEXT3 := Using NDSRAF (NDS Raguna Application Framework)
 
 TARGET      := $(shell basename $(CURDIR))
 BUILD       := build
-SOURCES     := data gfx/bin ../NDSRAF/source source
-INCLUDES    := build data gfx ../NDSRAF/include include
+SOURCES     := data gfx/bin ../../NDSRAF/source source
+INCLUDES    := build data gfx ../../NDSRAF/include include
 AUDIO       := audio
 RELEASEPATH := 
 

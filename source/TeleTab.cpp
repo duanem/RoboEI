@@ -180,10 +180,10 @@ Tab* initTeleTab()
 				Controllers::teleTabController->set_TravelBar(TravelAcrossBar);
 		
 		// number sprites (Score Locations and Balls PU)
-		NumberSprite* BallsPU = new NumberSprite(kBottomScreen, 100, 127, BALLS_Sprite);
-		NumberSprite* TopScoreTele = new NumberSprite(kBottomScreen, 218, 100, Top_Sprite);
-		NumberSprite* MidScoreTele = new NumberSprite(kBottomScreen, 218, 127, Mid_Sprite);
-		NumberSprite* LowScoreTele = new NumberSprite(kBottomScreen, 218, 154, Low_Sprite);
+		NumberSprite* BallsPU = new NumberSprite(kBottomScreen, 104, 135, BALLS_Sprite);
+		NumberSprite* TopScoreTele = new NumberSprite(kBottomScreen, 222, 108, Top_Sprite);
+		NumberSprite* MidScoreTele = new NumberSprite(kBottomScreen, 222, 135, Mid_Sprite);
+		NumberSprite* LowScoreTele = new NumberSprite(kBottomScreen, 222, 164, Low_Sprite);
 		
 			TeleTab->add(BallsPU);
 				Controllers::teleTabController->set_BallsPU(BallsPU);
@@ -198,7 +198,7 @@ Tab* initTeleTab()
 				Controllers::teleTabController->set_LScore(LowScoreTele);
 		
 		// disabled counter display
-		NumberSprite* DisabledCounter = new NumberSprite(kBottomScreen, 170, 36, BlankTitle_Sprite);
+		NumberSprite* DisabledCounter = new NumberSprite(kBottomScreen, 174, 44, BlankTitle_Sprite);
 			
 			TeleTab->add(DisabledCounter);
 				Controllers::teleTabController->set_DisabledCounter(DisabledCounter);

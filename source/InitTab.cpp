@@ -112,17 +112,17 @@ Tab* initInitTab()
 				Controllers::initTabController->add_BarSprite(AllianceColor4);
 				
 		
-		NumberSprite* TeamNum = new NumberSprite(kTopScreen, 48, 160, BlankTitle_Sprite);
+		NumberSprite* TeamNum = new NumberSprite(kTopScreen, 52, 168, BlankTitle_Sprite);
 		
 			InitTab->add(TeamNum);
 				Controllers::initTabController->set_TeamNum(TeamNum);
 		
-		NumberSprite* MatchNum = new NumberSprite(kTopScreen, 136, 160, BlankTitle_Sprite);
+		NumberSprite* MatchNum = new NumberSprite(kTopScreen, 140, 168, BlankTitle_Sprite);
 		
 			InitTab->add(MatchNum);
 				Controllers::initTabController->set_MatchNum(MatchNum);
 		
-		NumberSprite* DSNum = new NumberSprite(kTopScreen, 240, 160, BlankTitle_Sprite);
+		NumberSprite* DSNum = new NumberSprite(kTopScreen, 244, 168, BlankTitle_Sprite);
 		
 			InitTab->add(DSNum);
 				Controllers::initTabController->set_DSNum(DSNum);
