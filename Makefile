@@ -25,7 +25,7 @@ ARM7_SELECTED := ARM7_MP3
 
 TEXT1 := FIRST Game Rebound Rumble
 TEXT2 := For Year 2012
-TEXT3 := Using NDSRAF (NDS Raguna Application Framework)
+TEXT3 := Using NDSRAF (Nintendo DS Raguna Application Framework)
 
 #---------------------------------------------------------------------------------
 # TARGET is the name of the file to output
